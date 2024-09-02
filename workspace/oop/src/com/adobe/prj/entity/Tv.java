@@ -6,6 +6,12 @@ public class Tv extends Product{
     public Tv() {
     }
 
+    @Override
+    public boolean isExpensive() {
+        // proper code...
+        return false;
+    }
+
     public Tv(int id, String name, double price, String screenType) {
         super(id, name, price);
         this.screenType = screenType;

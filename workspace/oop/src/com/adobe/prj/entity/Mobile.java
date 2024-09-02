@@ -13,6 +13,7 @@ public class Mobile extends  Product{
         this.connectivity = connectivity;
     }
 
+
     public String getConnectivity() {
         return connectivity;
     }

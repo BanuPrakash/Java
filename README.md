@@ -293,3 +293,12 @@ p.getClass() == Mobile.class ===> true
 p.getClass() == Product.class ===> false
 
 ```
+
+abstract class
+1) such a object doesn't exist in real world, just meant for generalization
+like Account, Product
+2) we can't instantiate abstract class
+
+abstract methods: pure virtual functions [C++]
+1) method without body; no implementation
+2) when a base class has abstract methods, all inherited classes should compulsorily provide definitions of the abstract method; else that class also should be marked as abstract

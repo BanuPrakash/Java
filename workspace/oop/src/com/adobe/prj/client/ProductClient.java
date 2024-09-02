@@ -15,6 +15,7 @@ public class ProductClient {
         products[3] = new Mobile(65, "Oppo", 8900, "4G");
         products[4] = new Mobile(90, "OnePlus 14", 78000, "4G");
 
+       // products[4] = new Product(); //'Product' is abstract; cannot be instantiated
         printExpensive(products);
         printDetails(products);
         printDetailsOCP(products);
