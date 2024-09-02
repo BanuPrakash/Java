@@ -8,3 +8,4 @@ public class MobileDaoMySqlImpl implements  MobileDao{
         System.out.println(m.getName() + " stored in database!!!");
     }
 }
+

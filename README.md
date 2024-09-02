@@ -367,3 +367,13 @@ Entity --> interface --> implementation
 
 entities and interfaces are shared to developers who implement them and call them.
 
+Issues with below code:
+  MobileDao mobileDao = new MobileDaoFileImpl();
+     OR
+  MobileDao mobileDao = new MobileDaoMySqlImpl();
+
+  1) changes are done in client code, there could be many types of clients like standalone, web, mobile, Tv,....
+  2) No abstraction. Why should client know about type of persistence
+
+Solution:
+Use factory methods
