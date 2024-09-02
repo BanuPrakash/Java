@@ -258,5 +258,38 @@ getConnectivity().equals("3G"); --> can lead to NullPointerException if connecti
 
 ===========
 
+Product p = new Product();
+
+Product p = new Mobile(); // valid ---> UpCasting
+
+Product p = new Tv(); // valid ---> Upcasting
 
 
+Product p = new Mobile(24, "iPhone 15", 89000.00, "5G"); 
+// dynamic binding
+p.isExpensive(); // call isExpensive() present in Mobile and not the one present in Product class
+
+p.getName(); // valid
+
+p.getConnectivity(); // Error, because Product can't send the message getConnectivity()
+
+Mobile m = (Mobile)p; // downcasting
+m.getConnectivity(); // 5G
+
+===
+
+```
+Product p = new Mobile(24, "iPhone 15", 89000.00, "5G"); 
+
+p instanceof Product ===> true
+
+p instanceof Mobile ===> true
+
+p instanceof Object ===> true
+
+p instanceof Tv ===> false
+
+p.getClass() == Mobile.class ===> true
+p.getClass() == Product.class ===> false
+
+```
