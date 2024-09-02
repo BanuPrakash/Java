@@ -6,6 +6,7 @@ import com.adobe.prj.dao.MobileDaoFactory;
 //import com.adobe.prj.dao.MobileDaoMySqlImpl;
 import com.adobe.prj.entity.Mobile;
 
+// OCP
 public class RealizationClient {
     public static void main(String[] args) {
 //        MobileDao mobileDao = new MobileDaoFileImpl();

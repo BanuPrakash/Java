@@ -377,3 +377,30 @@ Issues with below code:
 
 Solution:
 Use factory methods
+
+Using Configuration files for factory
+========================
+
+Classloader loads the class if its referenced directly in code
+
+RealizationClient 
+    loads String, MobileDao, MobileDaoFactory, Mobile, System
+
+
+Programatically loading the class:
+
+Class.forName("java.lang.String"); // loads String class into metaspace
+
+Class.forName("java.util.Date");
+
+Class.forName("com.adobe.prj.dao.MobileDaoMySQLImpl"); // loads the class into metaspace
+
+----
+
+Creating objects
+1) if we know the class name in advance
+String s = new String();
+
+2) if we load class dynamically
+Class.forName("com.adobe.prj.dao.MobileDaoMySQLImpl").getConstructor().newInstance()
+
