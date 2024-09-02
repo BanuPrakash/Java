@@ -218,6 +218,13 @@ constructors:
 * can be overloaded; can have more than one
 * Compiler creates default constructor, if we don't write any.
 
+=================
+
+Requirement:
+need to have the count of how many accounts are created?
+
+Metaspace
+
 
 
 
