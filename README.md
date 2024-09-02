@@ -302,3 +302,68 @@ like Account, Product
 abstract methods: pure virtual functions [C++]
 1) method without body; no implementation
 2) when a base class has abstract methods, all inherited classes should compulsorily provide definitions of the abstract method; else that class also should be marked as abstract
+
+Note:
+1) abstract class need not have abstract methods.
+2) if one of the method is abstract then class has to be declared as abstract
+
+=============================
+
+Realization relationship: based on contract
+
+A component will realize the behavior specfied by other in order to communicate.
+
+Realization relationship in OOP is acheived using interfaces
+
+```
+// contract
+interface CustomerDao {
+    void addCustomer(Customer c); // abstract methods
+    Customer getCustomer(int id); // abstract method
+}
+
+all methods in interface are public and abstract by default
+interfaces are like complete abstract class
+
+// realization of contract <<implements>>
+
+public class CustomerDaoMySQLImpl implements CustomerDao {
+    // other state and behaviour
+
+    public void addCustomer(Customer c) {
+        // insert into ... SQL
+    }
+
+    public Customer getCustomer(int id) {
+        ... SELECT from custoemrs ...
+    }
+}
+
+// realization of contract <<implements>>
+public class CustomerDaoFileImpl implements CustomerDao {
+    // other state and behaviour
+
+    public void addCustomer(Customer c) {
+        // save to file
+    }
+
+    public Customer getCustomer(int id) {
+        ... get from file ...
+    }
+}
+```
+
+
+Why Program to interface / contract?
+1) DESIGN
+based on user stories we create interface
+register, login, home page should get all products, add to cart
+2) IMPLEMENTATION
+3) TESTING
+4) INTEGRATION
+5) LOOSE COUPLING
+
+Entity --> interface --> implementation
+
+entities and interfaces are shared to developers who implement them and call them.
+
