@@ -223,8 +223,40 @@ constructors:
 Requirement:
 need to have the count of how many accounts are created?
 
-Metaspace
+instance variable --> state of object
+static variable --> state of class [ shared by all objects of a class]
 
+local variables --> on stack
+instance variables --> on heap
+static variables --> on metaspace
+
+============================================
+
+Relationship between objects:
+1) Generalization and Specialization --> IS A, achevied in programming using inheritance
+2) Realization
+3) Association --> "Has A" Relationship
+4) Uses A
+
+
+Checkstyle / PMD / Sonar / Jenkins ,...
+
+CI / CD
+
+
+Checkstyle <<static code analyzer>>: Naming Conventions and comments...
+PMD / FindBug <<static code analyzer>>: Coding standards --> good programming practices
+
+I keep Mobile in my Pocket which as Tata Sky Mobile app <<TV>>
+
+
+
+
+"3G".equals(getConnectivity()) is preffered over. if connectivity is not set --> "3G".equals(null) --> false
+
+getConnectivity().equals("3G"); --> can lead to NullPointerException if connectivity is not set.
+
+===========
 
 
 
