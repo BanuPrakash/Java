@@ -402,5 +402,141 @@ Creating objects
 String s = new String();
 
 2) if we load class dynamically
-Class.forName("com.adobe.prj.dao.MobileDaoMySQLImpl").getConstructor().newInstance()
+Class.forName("com.adobe.prj.dao.MobileDaoMySQLImpl").getConstructor().newInstance();
+
+```
+    interface Swimable {
+        swim();
+    }
+
+    interface Danceable {
+        dance();
+    }
+
+    interface Fightable {
+        fight();
+    }
+
+    // all actors are capable to dance
+    class Actor implmenents Danceable {
+         // state and behaviour
+        dance() {
+            ...
+        }
+    }
+
+    // hero is a actor, and capable to dance, swim and fight
+    class Hero extends Actor implements Swimable, Fightable {
+        // state and behaviour
+        fight() {
+
+        }
+        swim() {
+
+        }
+    }
+
+// hero object is created, referenced by Fight interface
+// just like Product p = new Mobile();
+Fightable f = new Hero();
+f.fight(); // valid
+f.swim(); // Not valid; Stunt Master can direct only fight sequence of Hero
+
+Swimable s = (Swimable) f;
+s.swim(); // makes hero swim --> Swim Instructor
+
+Danceble d = (Danceable) s;
+d.dance(); // Choregrapher is directing dance sequence of Hero
+
+```
+
+* Java doesn't support multiple inheritance
+* Object is the root class. every class extends Object
+* class can implement multiple interfaces [ realization ]
+
+=========================================================
+
+Generic classes.
+
+```
+public class Rectangle {
+    int width;
+    int breadth;
+    ///
+}
+Rectangle r1 = new Rectangle(3,5);
+
+public class DRectangle {
+    double width;
+    double breadth;
+    ///
+}
+
+DRectangle r1 = new DRectangle(3.3,1.5); 
+Issue: too many classes, one for each type of data 
+
+Solution: use generics
+
+public class Rectangle<T> {
+    T width;
+    T breadth;
+    ///
+}
+
+Rectangle<Integer> r1 = new Rectangle<Integer>(3,5);
+Rectangle<Double> r2 = new Rectangle<Double>(1.3,4.5);
+Rectangle<String> r3 = new Rectangle<String("A","B");
+
+Note: Generics can't be primitive type
+Rectangle<int> r1 = new Rectangle<int>(3,5); // error
+
+Type Wrapper classes are used to convert primitive to Object type.
+Integer is a type wrapper for int
+Double is a type wrapper class for double.
+
+int x = 100;
+Integer iX = x; // boxing or wrapping
+
+int y = iX; // unboxing or  unwrapping
+
+```
+
+Narrowing of the types:
+```
+public class Rectangle<T extends Number> {
+    T width;
+    T breadth;
+    ///
+}
+
+
+Rectangle<Integer> r1 = new Rectangle<Integer>(3,5); //valid
+Rectangle<Double> r2 = new Rectangle<Double>(1.3,4.5); // valid
+Rectangle<String> r3 = new Rectangle<String("A","B"); // error
+```
+
+Generic method:
+
+```
+    public interface Computation<T> {
+        T compute(T v1, T v2);
+    }
+
+    public class IntegerComputation implements Computation<Integer> {
+        public Integer compute(Integer v1, Integer v2) {
+            ...
+        }
+    }
+
+     public class DoubleComputation implements Computation<Double> {
+        public Double compute(Double v1, Double v2) {
+            ...
+        }
+    }
+
+```
+
+Tasks for the Day:
+1) Different types of Comments in Java
+2) Naming conventions for Java: field, class, constants, methods
 
