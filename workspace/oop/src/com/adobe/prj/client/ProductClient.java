@@ -4,6 +4,8 @@ import com.adobe.prj.entity.Mobile;
 import com.adobe.prj.entity.Product;
 import com.adobe.prj.entity.Tv;
 
+import java.lang.reflect.Method;
+
 public class ProductClient {
     public static void main(String[] args) {
         Product[] products = new Product[5]; // Array of Pointers
@@ -15,18 +17,40 @@ public class ProductClient {
 
         printExpensive(products);
         printDetails(products);
+        printDetailsOCP(products);
     }
 
+    // OCP
+    private static void printDetailsOCP(Product[] products) {
+        for(Product p : products) {
+            // Reflection API
+            Method[] methods = p.getClass().getMethods(); //methods of class + inherited methods
+            for(Method m : methods) {
+                if(m.getName().startsWith("get")) {
+                    try {
+                        Object result = m.invoke(p); // like p.getId() where m is pointing to getId()
+                        System.out.println(m.getName().substring(3).toUpperCase() + " : " + result);
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            }
+            System.out.println("********");
+        }
+    }
+
+
+    // is this OCP? NO, we added typechecking and down casting code for every new type of Product
     private static void printDetails(Product[] products) {
         for(Product p : products) {
             System.out.println(p.getName() + ", " + p.getPrice() );
             // do typechecking before down casting
             // can use instanceof or getClass() to do the typechecking
             if(p instanceof Mobile) { // family of
-                Mobile m = (Mobile) p;
+                Mobile m = (Mobile) p; // down casting
                 System.out.println(m.getConnectivity());
             } else if(p.getClass() == Tv.class) { // strict checking compared to instanceof
-                Tv t = (Tv) p;
+                Tv t = (Tv) p; // down casting
                 System.out.println(t.getScreenType());
             }
         }
