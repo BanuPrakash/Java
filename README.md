@@ -126,8 +126,9 @@ Generally we use different compilers based on choice of programming langauge
 Account.java
 ```
     public class Account {
-        private double balance; //state, instance variable
+        private double balance; //state, instance variable; prefer making state as private
 
+        // actions / messages/ methods/ behaviour ---> public
         public void deposit(double amt) {
             this.balance += amt;
         }
@@ -178,9 +179,44 @@ HeapArea
 
 "new" is for DMA like malloc/calloc of "C"
 
-Header
+https://www.artima.com/insidejvm/ed2/jvm.html
 
-8700
+============
+
+Logically grouping of objects/classes
+* Entity classes: represent business data; they generally will be associated with persistent store like database / file / redis,..
+Uber as example:
+Customer.class
+Driver.class
+Car.class
+Payment.class
+Trip.class
+
+
+Amazon:
+Product, Customer, Order, Supplier, Payment, ...
+
+* DAO classes: Data Access Object --> classes to perform CRUD operations on persistent store
+CREATE READ UPDATE DELETE
+
+* Service classes: Facade over DAO and business logic
+
+* Exception classes : to represent any abnormal condition in application
+
+* Utility classes : helper classes
+
+* UI classes: User interface
+
+============
+
+in java we uses "packages" to logically group classes. packages are nothing but folders
+
+constructors:
+*special methods which has the same name as that of class; they are implicilty called when object is create, used to initialize the object. 
+* no explicit return type
+*Can't explictly call the constructor.
+* can be overloaded; can have more than one
+* Compiler creates default constructor, if we don't write any.
 
 
 
