@@ -5,6 +5,8 @@ import com.adobe.prj.entity.Product;
 import com.adobe.prj.entity.Tv;
 
 import java.lang.reflect.Method;
+import java.util.List;
+import java.util.stream.Stream;
 
 public class ProductClient {
     public static void main(String[] args) {
@@ -19,6 +21,9 @@ public class ProductClient {
         printExpensive(products);
         printDetails(products);
         printDetailsOCP(products);
+
+        int[] fibs = {0, 1};
+
     }
 
     // OCP

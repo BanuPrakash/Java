@@ -541,3 +541,121 @@ Tasks for the Day:
 1) Different types of Comments in Java
 2) Naming conventions for Java: field, class, constants, methods
 
+==========================================================================
+
+Day 1 Recap:
+OOP, JRE, Classloader, JVM, Stack, Metaspace, HeapArea
+local variables --> stack
+instance variables --> heap
+static variables --> Metaspace where class definition is stored
+
+new keyword is used to DMA --> instantiate objects and arrays
+in heap area memory is allocated not only for state, it also contains header part --> hashcode, lock, classInfo,..
+
+classInfo can be obtained using getClass() method of Object class.
+
+Generalization and Specialization relationship --> Inheritance <<extends>>
+
+super() to chain base class constructor, Overriding --> base class class already contains the method, we are not happy with the definition --> we override
+
+Overloading is different from overriding
+```
+class Base {
+    public int add(int x, int y) {
+        return x + y;
+    }
+    // overloading
+     public int add(int x) {
+        return x + x;
+    }
+}
+
+class Derived extends Base {
+    // overloading
+     public int add(int x, int y, int z) {
+        return x + y + z;
+    }
+    // override
+     public int add(int x, int y) {
+        // code
+        return x + y;
+    }
+}
+```
+abstract class and abstract methods, Reflection API {get methods of an object and invoke, create object without knowing class name}
+Realization relationship --> interface <<implements>>
+
+==============================
+
+Day 2:
+
+interface
+* Anonymous class --> class created by JRE for abstract classes and interfaces
+
+```
+interface Flyable {
+    void fly();
+}
+
+class Bird implements Flyable {
+    String name;
+    int age;
+    // methods
+
+    public void fly() {
+        // logic
+    }
+}
+
+class AeroPlane implements Flyable {
+    String engine;
+    String name;
+    int capacity;
+    // state and behaviour
+
+    public void fly() {
+        // logic
+    }
+}
+
+class SomeClass1 implements Flyable {
+    public void fly() {
+        System.out.println("Jump from 12th floor with wings");
+    }
+}
+
+class SomeClass2 implements Flyable {
+    public void fly() {
+        System.out.println("Jump from 24th floor with wings");
+    }
+}
+
+```
+
+Problem: too many classes in source code as well as in JVM: can lead to OutOfMemoryError <<too many classes loaded by classloader in Metaspace of JVM>>
+
+Solution: Using Anonymous class or Lambda expression
+
+```
+    Flyable f1 = new Flyable(); // error, can't instantiate interface << also for abstract class>>
+
+    Flyable f1 = new Flyable() {
+        public void fly() {
+            System.out.println("Jump from 24th floor with wings");
+        };
+    };
+    // within JVM an anonymous class is created and object is created for anonymous class
+    // once object is created, anonymous class is destroyed
+
+    f1.fly(); // works fine
+
+```
+
+Functional Interface: interface with only one method to be implemented
+Lambda expression can be used for FunctionalInterface.
+
+Prefer Lambda if interface has only one method instead of Anonymous class from Java 8 version onwards.
+
+=============
+
+
