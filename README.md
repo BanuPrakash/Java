@@ -770,3 +770,41 @@ We can have many HOF chained for a stream, but the last operation has to be a te
 
 https://rxmarbles.com/
 
+=======================================
+
+Set 
+ |
+ HashSet
+ |
+ TreeSet
+
+HashSet data container is a implementation of Set interface, for unique collection.
+HashSet uses hashCode() and equals() to identify duplicate elements and also for ordering elements.
+
+What is HashCode?
+* Numerical value of object generally based on state of object
+* if 2 objects are similar then their hashcodes has to be same
+* possibility is 2 dissimilar objects can also have same hashcode.
+
+Hashcode of every object is stored in header part [heap area] 
+
+public class Object {
+    int hashCode(); // gives address of object; not good; we need to override
+}
+// Bad hashCode example
+```
+public class Rectangle {
+    w, b;
+
+    @Override
+    public int hashCode() {
+        return w * b;
+    }
+}
+lots of collision
+Rectangle r1 = new Rectangle(4,5); // hashcode --> 20
+Rectangle r2 = new Rectangle(5,4); // hashcode --> 20
+Rectangle r3 = new Rectangle(10,2); // hashcode --> 20
+Rectangle r4 = new Rectangle(20,1); // hashcode --> 20
+Rectangle r5 = new Rectangle(1,20); // hashcode --> 20
+```

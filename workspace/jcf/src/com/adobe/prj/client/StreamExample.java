@@ -60,6 +60,7 @@ public class StreamExample {
                 .map(p -> p.getPrice())
                 .reduce(0.0, (v1,v2) -> v1+ v2);
         System.out.println(totalMobile);
+
     }
 }
 
