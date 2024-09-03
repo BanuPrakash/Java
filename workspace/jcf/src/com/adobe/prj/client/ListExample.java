@@ -16,7 +16,7 @@ public class ListExample {
         products.add(new Product(90, "OnePlus 14", 78000, "mobile"));
         products.add(new Product(321, "Logitech Mouse", 450.00, "computer"));
 
-        Collections.sort(products);// Collections is similar to Arrays but can be used only on list containers
+        Collections.sort(products);// Collections are similar to Arrays but can be used only on list containers
 
         for(Product p : products) {
             System.out.println(p);

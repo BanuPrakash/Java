@@ -738,4 +738,29 @@ list.add(new Date()); // compilation error
 
 String s = list.get(0);
 
+===
+
+Stream --> introduced in Java 8 version
+A stream represents a sequence of elements and supports different operations (Filter, Sort, Map, and Collect) from a collection or file or network or database stream source.
+
+HOF --> High Order Functions (filter, map, reduce, collect, limit, skip, forEach, ...)
+* HOF is one which can take function as argument
+* HOF is also a function which can return a function
+
+filter --> to get sub-set
+map --> to transform the data
+reduce --> to get aggregate like [sum, count, avg, total]
+collect --> to collect the output of stream in other container
+forEach --> traverse thro output of stream operation
+
+filter(predicateFn) {
+    container;
+    for every elem in source
+        if(predicateFn(elem))
+            add to container
+    end for
+
+    return container
+}
+
 
