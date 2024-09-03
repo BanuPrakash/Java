@@ -688,3 +688,54 @@ Comparator is used to compare objects based on clients requirements and logic is
 
 Arrays: built in algorthim class can be used to find max, min, sort, ... operations on array type of a container based on Comparable or Comparator interface --> Similar to Util.java what we wrote.
 
+List vs Set
+List:
+1) ordered collection
+2) can contain duplicate elements
+3) supports index based operation --> add(5, "a"), get(6);, remove(10); ...
+4) can be re-ordered --> sort, shuffle, reverse, ...
+
+Set:
+1) unique collection
+2) not suppors re-ordering or index based operations
+
+List is preffered over array to overcome the limitations of array
+
+Vector and Stack are legacy implemnetations of List interface, not supposed to be used because operations are very slow.
+Reason: every operation needs a thread to acquire a lock
+
+for List preffered implmentation classes are 
+1) ArrayList --> Java
+2) LinkedList --> Java
+3) Apache Collections
+4) VAVR collection
+
+ArrayList (95% usage) vs LinkedList
+ArrayList is like Array but can grow or shrink
+LinkedList is doubly linked list
+
+-----------
+
+Different ways of using List data container
+1) ArrayList list = new ArrayList(); 
+// avoid --> heterogenous container --> Not type safe
+list.add("A");
+list.add(34);
+list.add(new Date());
+
+to access we need to do type checking
+
+if(list.get(i) instanceof Date) {
+    Date d = (Date) list.get(i);
+}
+
+// always program to interface
+
+2) List<String> list = new ArrayList<>();  // use genrerics for type safety
+list.add("Anna"); // works
+list.add(new Date()); // compilation error
+// typesafe
+
+String s = list.get(0);
+
+

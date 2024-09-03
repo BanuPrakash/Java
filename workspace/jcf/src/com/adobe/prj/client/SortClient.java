@@ -4,6 +4,7 @@ import com.adobe.prj.entity.Product;
 
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.Vector;
 
 public class SortClient {
     public static void main(String[] args) {
