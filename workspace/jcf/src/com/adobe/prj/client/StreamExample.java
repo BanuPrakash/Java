@@ -4,8 +4,10 @@ import com.adobe.prj.entity.Product;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class StreamExample {
@@ -30,7 +32,34 @@ public class StreamExample {
         nameStream.forEach(name -> System.out.println(name));
 
         System.out.println("******");
-        
+
+        System.out.println("get names of tv");
+        products.stream()
+                .filter(p -> p.getCategory().equals("tv"))
+                //.map(p -> p.getName())
+                .map(Product::getName)// method reference
+                //.forEach(name -> System.out.println(name));
+                .forEach(System.out::println); // method reference
+
+        List<Product> mobiles = products.stream()
+                .filter(p -> p.getCategory().equals("mobile"))
+                .collect(Collectors.toList());
+
+        Set<Product> mobileSet = products.stream()
+                .filter(p ->p.getCategory().equals("mobile"))
+                .collect(Collectors.toSet());
+
+        System.out.println("Total of all products");
+
+        double total = products.stream().map(p -> p.getPrice()).reduce(0.0, (v1,v2) -> v1+ v2);
+        System.out.println(total);
+
+        System.out.println("Total of all mobiles");
+        double totalMobile = products.stream()
+                .filter(p -> p.getCategory().equals("mobile"))
+                .map(p -> p.getPrice())
+                .reduce(0.0, (v1,v2) -> v1+ v2);
+        System.out.println(totalMobile);
     }
 }
 

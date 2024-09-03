@@ -753,6 +753,7 @@ reduce --> to get aggregate like [sum, count, avg, total]
 collect --> to collect the output of stream in other container
 forEach --> traverse thro output of stream operation
 
+```
 filter(predicateFn) {
     container;
     for every elem in source
@@ -762,5 +763,10 @@ filter(predicateFn) {
 
     return container
 }
+```
 
+We can have many HOF chained for a stream, but the last operation has to be a terminal operation [collect, forEach, reduce]
+
+
+https://rxmarbles.com/
 
