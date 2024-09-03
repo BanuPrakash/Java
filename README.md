@@ -954,3 +954,93 @@ mysql> select * from products;
 +----+--------------+--------+
 2 rows in set (0.01 sec)
 ```
+
+Java build tools:
+1) Maven / Gradle --> build automation tool
+* Compile
+* package
+* deploy
+* manage dependencies [most important part]
+
+2) Sonar /Checkstyle and PMD: --> Static code analysis
+3) Jenkins --> CI / CD
+
+3rd party libraries are available in different "repositories" in the form of "jar" files, we need those libraries for building application
+Example:
+* spring
+* hibernate
+* jackson
+* servlet-api
+....
+
+Database application ==> convert it into web application.
+
+JDBC: Java Database Connectivity --> Integration libarary to connect Java to database
+
+Java provides interfaces, implementation classes are provided by database vendors [like Oracle, SQLServer, MySQL]
+
+String --> VARCHAR for MYSQL, VARCHAR2 for Oracle, Text for SQLServer
+
+Steps:
+
+1) Establish a database connection
+
+Connection con = DriverManager.getConnection(URL , USERNAME, PASSWORD);
+URL examples:
+jdbc:oracle:thin:@178.44.11.20:1521/TRG for Oracle
+jdbc:mysql://178.44.11.20:3306/TRG for MySQL
+
+Connection is a interface
+getConnection() is a factory method, based on URL it creates OracleConnection / SQLServerConnection / MySQLConnection
+
+
+2) Send SQL statements 
+2.1) Statement
+    if SQL is same for every request
+    select * from products
+2.2) PreparedStatement
+    if SQL depends on IN parameter
+
+    select * from users where username = ? and password = ?
+    select * from products where id = ?
+
+2.3) CallableStatement
+    to invoke stored procedures of database
+
+In database we have:
+```
+CREATE PROCEDURE SelectAllCustomers @City nvarchar(30)
+AS
+SELECT * FROM Customers WHERE City = @City
+GO;
+```
+
+from Java: {call SelectAllCustomers('Delhi')}
+
+Advantage: we can hide table and column names from application, more secure
+we can have multiple SQLs executed
+
+Methods:
+1) int executeUpdate(SQL)
+use this for INSERT, DELETE, UPDATE SQL
+returned int specifies how many records are affected
+2) ResultSet executeQuery(SQL)
+use this for SELECT statement
+
+
+3) ResultSetMetaData can be used to get column count, type of column, any metadata
+
+4) Always close connection in finally block.
+finally block is a compulsory execute code. get called if no exception or exception
+
+```
+try {
+    // code
+} catch(SQLException ex) {
+    ...
+} finally {
+    con.close(); // guaranteed execution
+}
+```
+
+
