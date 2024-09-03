@@ -5,6 +5,8 @@ import com.adobe.prj.entity.Product;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class ListExample {
     public static void main(String[] args) {
@@ -28,5 +30,20 @@ public class ListExample {
         for(Product p : products) {
             System.out.println(p);
         }
+
+        System.out.println("****");
+
+        Map<String, List<Product>> productMap = products.stream()
+                .collect(Collectors.groupingBy(p -> p.getCategory()));
+
+        productMap.forEach((key, value) -> {
+            System.out.println(key);
+            value.forEach(System.out::println);
+        });
+
+        System.out.println("****");
+
+        List<Product> tvs = productMap.get("tv");
+
     }
 }

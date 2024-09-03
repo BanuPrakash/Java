@@ -808,3 +808,14 @@ Rectangle r3 = new Rectangle(10,2); // hashcode --> 20
 Rectangle r4 = new Rectangle(20,1); // hashcode --> 20
 Rectangle r5 = new Rectangle(1,20); // hashcode --> 20
 ```
+
+Hashbased data containers uses HashCode
+HashSet, Hashtable, HashMap uses it
+
+
+Map is a data container which stores data in the form of Key/value pair
+Examples: Dictionary, registry
+key has to be unique, can have duplicate values
+
+
+
