@@ -928,9 +928,10 @@ install on docker platform and run it as "local-mysql" container
 username is root and password as Welcome123
 
 % docker exec -it local-mysql bash
+```
 # mysql -u root -p
 Enter  Password: Welcome123
-
+```
 
 mysql> create database TRG;
 Query OK, 1 row affected (0.01 sec)
@@ -944,6 +945,7 @@ mysql> insert into products values (0, 'iPhone 15', 89000.00);
 mysql> insert into products values (0, 'Samsung OLED', 249000.00);
 
 mysql> select * from products;
+```
 +----+--------------+--------+
 | id | name         | price  |
 +----+--------------+--------+
@@ -951,3 +953,4 @@ mysql> select * from products;
 |  2 | Samsung OLED | 249000 |
 +----+--------------+--------+
 2 rows in set (0.01 sec)
+```
