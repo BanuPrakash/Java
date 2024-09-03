@@ -661,5 +661,30 @@ Prefer Lambda if interface has only one method instead of Anonymous class from J
 Built-in interface Comparable. 
 Objects implementing this interface we can sort objects, find max, find min,...
 
+==============================
 
+Java Collection Frameworks --> provides data structures / containers
+* interface
+* implementation
+* Algorithm classes
+
+JCF can be used instead of arrays
+Array has to be the first choice for data container.
+Issues with array:
+1) Size is fixed
+2) can't grow nor shrink
+3) adding / removing from arbitrary position is difficult --> O(n)
+4) Contiguous memory
+
+Comparable vs Comparator
+
+Comparable is used to compare objects based on natural logic and logic is a part of object itself.
+
+String --> has compareTo() based on which we compare strings --> Lexical
+Product --> has compareTo() based on which we compared products ==> price
+
+Comparator is used to compare objects based on clients requirements and logic is part of client.
+
+
+Arrays: built in algorthim class can be used to find max, min, sort, ... operations on array type of a container based on Comparable or Comparator interface --> Similar to Util.java what we wrote.
 
