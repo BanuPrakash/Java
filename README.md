@@ -658,4 +658,8 @@ Prefer Lambda if interface has only one method instead of Anonymous class from J
 
 =============
 
+Built-in interface Comparable. 
+Objects implementing this interface we can sort objects, find max, find min,...
+
+
 
