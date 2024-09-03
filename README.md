@@ -867,7 +867,47 @@ s += "!";
 String is immutable.
 StringBuilder and StringBuffer are muttable
 
+==========================================
 
+Introduction to Exception:
+Any abnormal condition during program execution is an exception.
+Exception is an object which gives info:
+1) What went wrong
+2) Where did it go wrong
+3) Why did it go wrong
+
+exceptions broadly classified into "Error" and "Exception"
+Error: can't have any solution during program exection
+StackOverflowError, OutOfMemoryError, JvmError, ...
+
+Exception: we can have alternate solution
+
+Exception type of exceptions can be classified into "Checked type" and "unchecked type"
+
+* Unchecked type of exceptions
+1) These exceptions are a result of something going wrong with JVM
+2) Compiler will not enforce you to handle it.
+FirstExample.java
+3) it is suggested that we handle it using conditional statements
+```
+int index = 5;
+ int[] elems = {4,21};
+ if(index >= 0 and index < elems.length) {
+        System.out.println(elems[index]);
+ }
+
+ Product p;
+ p.getName(); // throws NullPointerException
+
+ Handle
+ if(p != null) {
+    p.getName();
+ }
+```
+
+* Checked type
+1) these exceptions are a result of abnormal conditions outside of JVM like OS / Network/ Database
+2) Compiler enforces you to handle them using try/catch syntax
 
 
 

@@ -33,4 +33,10 @@ public class SQLProcessor {
         builder.setCharAt(builder.lastIndexOf(","), ')');
         return builder.toString();
     }
+
+    public static String generateInsertSQL(Object obj) {
+        StringBuilder builder = new StringBuilder();
+        // use m.invoke() clue
+        return builder.toString();
+    }
 }
