@@ -910,4 +910,44 @@ int index = 5;
 2) Compiler enforces you to handle them using try/catch syntax
 
 
+Install Docker and MySQL on Docker
 
+=====
+
+
+Docker is a set of platform as a service products that use OS-level virtualization to deliver software.
+
+Image --> software
+
+Container --> running application
+
+docker run -p 3306:3306 -d --name local-mysql -e MYSQL_ROOT_PASSWORD=Welcome123 mysql
+
+mysql --> image
+install on docker platform and run it as "local-mysql" container
+username is root and password as Welcome123
+
+% docker exec -it local-mysql bash
+# mysql -u root -p
+Enter  Password: Welcome123
+
+
+mysql> create database TRG;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> use TRG;
+mysql> create table products (id int PRIMARY KEY AUTO_INCREMENT, name VARCHAR(100), price double);
+
+
+mysql> insert into products values (0, 'iPhone 15', 89000.00);
+
+mysql> insert into products values (0, 'Samsung OLED', 249000.00);
+
+mysql> select * from products;
++----+--------------+--------+
+| id | name         | price  |
++----+--------------+--------+
+|  1 | iPhone 15    |  89000 |
+|  2 | Samsung OLED | 249000 |
++----+--------------+--------+
+2 rows in set (0.01 sec)
