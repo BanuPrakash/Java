@@ -1,7 +1,11 @@
 package com.adobe.prj.entity;
 
+import com.adobe.prj.orm.Column;
+import com.adobe.prj.orm.Table;
+
 import java.util.Objects;
 
+@Table(name="products")
 public class Product implements Comparable<Product>{
     private int id;
     private String name;
@@ -18,6 +22,7 @@ public class Product implements Comparable<Product>{
         this.category = category;
     }
 
+    @Column(name="PID", type = "NUMERIC(8)")
     public int getId() {
         return id;
     }
@@ -26,6 +31,7 @@ public class Product implements Comparable<Product>{
         this.id = id;
     }
 
+    @Column(name="PRD_NAME")
     public String getName() {
         return name;
     }
@@ -34,6 +40,7 @@ public class Product implements Comparable<Product>{
         this.name = name;
     }
 
+    @Column(name="PRICE", type="NUMERIC(12,2)")
     public double getPrice() {
         return price;
     }
@@ -42,6 +49,7 @@ public class Product implements Comparable<Product>{
         this.price = price;
     }
 
+    @Column(name="PRD_CATEGORY", type="VARCHAR(100)")
     public String getCategory() {
         return category;
     }

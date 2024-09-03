@@ -817,5 +817,57 @@ Map is a data container which stores data in the form of Key/value pair
 Examples: Dictionary, registry
 key has to be unique, can have duplicate values
 
+=====================================
+
+Annotation [@] --> Metadata: data about data
+@Override
+
+Who uses the Annotations?
+* Compiler
+* Classloader
+* Runtime
+
+Where can i use annotation?
+* TYPE --> class , interface , annotation
+* Method --> example is @Override
+* Field 
+* Parameters
+* Constructor
+
+Example of who uses it?
+
+1) @Override is used by Compiler, checks the base class if signature matches,
+if match compile the class, else compiler throws error.
+Compiled code won't have the metadata [ .class file doesn;t contain]
+```
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Product product = (Product) o;
+        return id == product.id && Objects.equals(name, product.name);
+    }
+
+```
+
+2) we can write annotations for Classloaders also, but we need to write our own classloader to process it.
+
+Custom annotations: --> Re-create ORM Object relational mapping 
+ORM --> we do the mapping of Object to RDBMS table.
+DDL and DML SQLs are generated based on mapping.
+
+Annotations can't have fields and methods, only properties can be there
+
+Never use String Contactination
+
+String s = "Hello";
+s += " World";
+s += " 123";
+s += "!";
+String is immutable.
+StringBuilder and StringBuffer are muttable
+
+
+
 
 
