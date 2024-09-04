@@ -1192,6 +1192,96 @@ Servlet is working both as View and controller.
 
 JSP is a combination of static + dynamic content --> prefer this for presentation
 
+======================
 
-products: [....]
+Spring Framework and ORM Framework
+
+
+Spring Framework: Light weight framework which helps in life cycle management of beans and dependency injection while building enterprise application.
+
+Bean: --> any object managed by spring framework
+
+```
+public interface EmployeeDao {
+    void addEmployee(Employee e);
+}
+
+public class EmployeeDaoJdbcImpl implements EmployeeDao {
+    public void addEmployee(Employee e) {
+        "INSERT INTO ..."
+    }
+}
+
+public class EmployeeDaoMongoImpl implements EmployeeDao {
+    public void addEmployee(Employee e) {
+       db.employess.add(e);...
+    }
+}
+
+public class AppService {
+    private EmployeeDao empDao;
+    public void setEmpDao(EmployeeDao dao) {
+        this.empDAo = dao;
+    }
+
+    public void insert(Employee e) {
+        empDao.addEmployee(e);
+    }
+}
+
+XML as Metadata: beans.xml
+<beans>
+    <bean id="jdbc" class="pkg.EmployeeDaoJdbcImpl" />
+    <bean id="mongo" class="pkg.EmployeeDaoMongoImpl" />
+    <bean id="appService" class="pkg.AppService">
+        <property name="empDao" ref="jdbc" />
+    </bean>
+</beans>
+
+setEmpDao(jdbc);
+
+ApplicationContext ctx = new ClassPathXmlApplicationContext("beans.xml");
+
+ctx.getBean("appService", AppService.class);
+
+```
+
+Annotation as metadata:
+Spring Container instantiates classes which has one of these annotations at class level:
+1) @Component
+2) @Repository
+3) @Service
+4) @Configuration
+5) @Controller
+6) @RestController
+7) @ControllerAdvice
+
+```
+```
+public interface EmployeeDao {
+    void addEmployee(Employee e);
+}
+
+@Repository
+public class EmployeeDaoJdbcImpl implements EmployeeDao {
+    public void addEmployee(Employee e) {
+        "INSERT INTO ..."
+    }
+}
+
+@Service
+public class AppService {
+    @Autowired
+    private EmployeeDao empDao;
+  
+    public void insert(Employee e) {
+        empDao.addEmployee(e);
+    }
+}
+
+```
+
+
+
+
 
