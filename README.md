@@ -1281,7 +1281,22 @@ public class AppService {
 
 ```
 
+Spring Boot: Framework on top of Spring Framework
+* Highly opiniated framework
+--> if we want to build web application, tomcat is configured out of box
+--> if we are connecting to database. Pool of database connections is created for you.
+We should not use DriverMananger.getConnection(), prefer DB connection
+* removes a lot of boilerplate code
+
+Spring Boot 2.x is built on top of Spring Framework 5.x
+Spring Boot 3.x is built on top of Spring Framework 6.x
 
 
 
+SpringApplication.run() is similar to ApplicationContext ctx = new AnnotationConfigApplicationContext();
 
+@SpringBootApplication is 3 in one
+1) @ComponentScan
+it scans for classes with above "7" annotations in com.adobe.springdemo; and sub-packages and creates objects
+2) @EnableAutoConfiguration : create embedded tomcat server, database connection pool==> based on type application
+3) @Configuration
