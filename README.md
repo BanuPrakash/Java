@@ -1169,3 +1169,11 @@ war --> given to devops person --> deploy it on actual web server....
 
 Run maven goal
 mvn jetty:run
+
+===============
+
+POST method, Session and Filter 
+
+Resume @ 2:00
+
+
