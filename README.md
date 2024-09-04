@@ -1166,3 +1166,6 @@ webapp folder --> for static resources like html / js / jsp ...
 
 
 war --> given to devops person --> deploy it on actual web server....
+
+Run maven goal
+mvn jetty:run
