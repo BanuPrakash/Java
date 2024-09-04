@@ -1300,3 +1300,8 @@ SpringApplication.run() is similar to ApplicationContext ctx = new AnnotationCon
 it scans for classes with above "7" annotations in com.adobe.springdemo; and sub-packages and creates objects
 2) @EnableAutoConfiguration : create embedded tomcat server, database connection pool==> based on type application
 3) @Configuration
+
+Field employeeDao in com.adobe.springdemo.service.AppService required a single bean, but 2 were found:
+	- employeeDaoJdbcImpl:
+	- employeeDaoMongoImpl:
+
