@@ -1059,4 +1059,38 @@ groupId --> qualified project like com.adobe.aem
 artifactId --> module like "customer"
 version --> different version
 
+```
+
+public class ProductDaoMongoDbImpl implements  ProductDao{
+    @Override
+    public void addProduct(Product p) throws  PersistenceException{
+        try {
+       // code
+        } catch(MongoException ex) {
+            throw new PersisentenceException("Unable to add Product", ex);
+        }
+    }
+
+``
+Client:
+
+try {
+    ProductDao productDao = new ProductDaoJdbcImpl(); 
+    Product p = new Product(...);
+    productDao.addProduct(p);
+} catch(PersistenceException ex) {
+    // print the message
+}
+
+Problems:
+1) Exception messages are complicated for end users like
+ORA9001 unique key constraint voilation exception ...
+2) Not abstracted. Why should the client know that we are using RDBMS in the backend
+3) Tightly coupled
+
+
+
+
+
+
 
