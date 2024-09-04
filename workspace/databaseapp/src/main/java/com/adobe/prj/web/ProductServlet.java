@@ -1,5 +1,6 @@
 package com.adobe.prj.web;
 
+import com.adobe.prj.dao.PersistenceException;
 import com.adobe.prj.dao.ProductDao;
 import com.adobe.prj.dao.ProductDaoJdbcImpl;
 import com.adobe.prj.entity.Product;
@@ -13,7 +14,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
-@WebServlet("/products")
+@WebServlet("products")
 public class ProductServlet extends HttpServlet {
 
     @Override
@@ -38,5 +39,20 @@ public class ProductServlet extends HttpServlet {
         out.print("<a href=\"index.html\">Back </a>");
         out.print("</body>");
         out.print("</html>");
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Product p = new Product();
+        p.setName(req.getParameter("name"));
+        p.setPrice(Double.parseDouble(req.getParameter("price")));
+        ProductDao productDao = new ProductDaoJdbcImpl();
+        try {
+            productDao.addProduct(p);
+            resp.sendRedirect("index.html");
+        } catch (PersistenceException e) {
+            //System.out.println(e.getMessage()); // for end user
+            e.printStackTrace(); // for developers
+        }
     }
 }

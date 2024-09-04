@@ -1174,6 +1174,12 @@ mvn jetty:run
 
 POST method, Session and Filter 
 
-Resume @ 2:00
+mvn package ==> creates a "war" file which can be deployed on any web server instead of running it on embedded server
+
+request
+
+name: ....
+price: ....
+
 
 
