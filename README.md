@@ -1043,4 +1043,20 @@ try {
 }
 ```
 
+Day 2 Recap:
+* Data Containers / DataStructure
+* Comparable vs Comparator
+* Arrays and Collections --> Algorithms like sort, max, min, binarySearch... work based on contract
+* List vs Set
+* Map and HashMap [key / value ] pairs
+* Exception handling
+* Docker, docker container, create database and table. insert records.
+* Maven
+
+Day 3:
+
+groupId --> qualified project like com.adobe.aem
+artifactId --> module like "customer"
+version --> different version
+
 
