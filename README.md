@@ -1091,10 +1091,78 @@ ORA9001 unique key constraint voilation exception ...
 
 ===========
 
+Web application development
+
+Web server
+A web server is software that delivers web content to clients, such as web browsers, using the HTTP protocol. It's primarily responsible for delivering static content like HTML, images, and videos. 
+Servlet engine
+Also known as a servlet container or web container, a servlet engine is a Java technology that runs on a web server or application server to deliver dynamic content.
+
+Servlet's are special type of objects which execute within Servlet engine to server dynamic content
 
 
+request: encapsulates all the data from client [form data , browser, os]
+
+response: is used to write data back to client
+
+Servlet engines : tomcat / jetty / netty ,...
+
+jetty: minature web server with servlet container
+
+Servlet engines needs packages to be done as "war"
+jar --> java Archive
+war --> Web archive
+ear --> Enterprise archive
+
+WAR different from jar in the way folders are created / organized
+
+```
+    myapplication
+        WEB-INF
+            classes
+                pkg.LoginServlet.class
+                pkg.RegisterServlet.class
+                pkg.ProductServlet.class
+            web.xml
+```
+
+web.xml ---> deployment descriptor --> information to the servlet engine
+```
+Using below entries Servlet engine instantiates servlets
+<servlet>
+    <servlet-name>First</servlet-name>
+    <servlet-class>pkg.LoginServlet</servlet-class>
+</servlet>
+
+Mapping
+<servlet-mapping>
+    <servlet-name>First</servlet-name>
+    <url-pattern>/login</ulr-pattern>
+</servlet-mapping>
+```
+
+every servlet extends HttpServlet or implements Servlet interface <<rare>>
+HTTP Methods: GET , POST , PUT , DELETE ,PATCH, TRACE, OPTIONS
+
+```
+public class ProductServlet extends HttpServlet {
+    public void doGet(HttpServletRequest req, HttpServletResponse res) {
+        ...
+    }
+    public void doPost(HttpServletRequest req, HttpServletResponse res) {
+        ...
+    }
+}
+```
+
+Instead of web.xml we can use Annotation as deployment descriptor
+```
+@WebServlet("/login")
+public class LoginServlet extends HttpServlet {
+}
+```
+
+webapp folder --> for static resources like html / js / jsp ...
 
 
-
-
-
+war --> given to devops person --> deploy it on actual web server....
