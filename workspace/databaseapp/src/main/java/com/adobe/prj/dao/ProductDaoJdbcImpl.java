@@ -25,7 +25,7 @@ public class ProductDaoJdbcImpl implements  ProductDao{
             PreparedStatement ps = con.prepareStatement(SQL);
             ps.setString(1, p.getName());
             ps.setDouble(2, p.getPrice());
-            ps.executeUpdate();
+            ps.executeUpdate(); //INSERT, DELETE and UPDATE
         } catch (SQLException ex) {
             throw  new PersistenceException("Unable to add Product", ex);
         } finally {
