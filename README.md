@@ -1305,3 +1305,14 @@ Field employeeDao in com.adobe.springdemo.service.AppService required a single b
 	- employeeDaoJdbcImpl:
 	- employeeDaoMongoImpl:
 
+
+profile resolving:
+command line arguments --> environment variable --> application.properties
+
+==============
+
+How does Spring manage objects of 3rd party classes, because we can't add any of above "7" annotations
+Solution: Factory method --> @Bean
+
+DataSource is a pool of database connection
+
