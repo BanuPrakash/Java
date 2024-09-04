@@ -1176,10 +1176,22 @@ POST method, Session and Filter
 
 mvn package ==> creates a "war" file which can be deployed on any web server instead of running it on embedded server
 
-request
+========
+SOLID : 
+S --> Single Responsibility
 
-name: ....
-price: ....
+Preffered Architectural pattern --> MVC: Model View Controller
+
+Model : business data and logic
+View: Presentation logic --> Templates [JSP, Thymeleaf,...]
+Controller: Application logic --> Flow of your application
+
+Issue with our existing code:
+Servlet is working both as View and controller.
 
 
+JSP is a combination of static + dynamic content --> prefer this for presentation
+
+
+products: [....]
 

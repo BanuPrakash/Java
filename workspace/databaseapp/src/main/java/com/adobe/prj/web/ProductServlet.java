@@ -17,28 +17,38 @@ import java.util.List;
 @WebServlet("products")
 public class ProductServlet extends HttpServlet {
 
+//    @Override
+//    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//        resp.setContentType("text/html"); //MIME image/gif image/png text/js text/css application/msword
+//        // open stream to the client <<Browser>>
+//        PrintWriter out = resp.getWriter(); // character stream
+//        out.print("<html>");
+//        out.print("<body>");
+//        out.print("<table border=\"1\">");
+//            out.print("<tr><th>ID</th><th>Name</th><th>Price</th></tr>");
+//        ProductDao productDao = new ProductDaoJdbcImpl();
+//        List<Product> products = productDao.getProducts();
+//        for(Product p : products) {
+//            out.print("<tr>");
+//                out.print("<td>" + p.getId() + "</td>");
+//                out.print("<td>" + p.getName() + "</td>");
+//                out.print("<td>" + p.getPrice() + "</td>");
+//            out.print("</tr>");
+//        }
+//        out.print("</table>");
+//        out.print("<a href=\"index.jsp\">Back </a>");
+//        out.print("</body>");
+//        out.print("</html>");
+//    }
+
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setContentType("text/html"); //MIME image/gif image/png text/js text/css application/msword
-        // open stream to the client <<Browser>>
-        PrintWriter out = resp.getWriter(); // character stream
-        out.print("<html>");
-        out.print("<body>");
-        out.print("<table border=\"1\">");
-            out.print("<tr><th>ID</th><th>Name</th><th>Price</th></tr>");
+       // no presentation logic, only controller logic
         ProductDao productDao = new ProductDaoJdbcImpl();
         List<Product> products = productDao.getProducts();
-        for(Product p : products) {
-            out.print("<tr>");
-                out.print("<td>" + p.getId() + "</td>");
-                out.print("<td>" + p.getName() + "</td>");
-                out.print("<td>" + p.getPrice() + "</td>");
-            out.print("</tr>");
-        }
-        out.print("</table>");
-        out.print("<a href=\"index.html\">Back </a>");
-        out.print("</body>");
-        out.print("</html>");
+        req.setAttribute("products", products); // MAP type of container
+        req.getRequestDispatcher("list.jsp").forward(req, resp);
     }
 
     @Override
@@ -49,10 +59,11 @@ public class ProductServlet extends HttpServlet {
         ProductDao productDao = new ProductDaoJdbcImpl();
         try {
             productDao.addProduct(p);
-            resp.sendRedirect("index.html");
+            resp.sendRedirect("index.jsp?msg=Product added successfully!!");
         } catch (PersistenceException e) {
             //System.out.println(e.getMessage()); // for end user
             e.printStackTrace(); // for developers
+            resp.sendRedirect("index.jsp?msg=" + e.getMessage());
         }
     }
 }

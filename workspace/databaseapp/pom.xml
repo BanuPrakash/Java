@@ -32,6 +32,14 @@
             <version>6.1.0</version>
             <scope>provided</scope>
         </dependency>
+
+        <!-- Java Server Pages Tag Library -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 
 
