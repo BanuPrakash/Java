@@ -1403,5 +1403,13 @@ Note: Used only for test environment
 --> Bottom to Top Approach [ DBA has provided you the tables]
 
 
+JpaRepositories:
+```
+public interface ProductDao extends JpaRepository<Product, Integer> {
+}
+public interface CustomerDao extends JpaRepository<Customer, String> {
+}
 
-
+no need for implmentation classes; Spring Data jpa is going to generate classes for ProductDao & CustomerDao
+Note: no @Repository classes
+```
