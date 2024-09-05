@@ -1555,11 +1555,41 @@ Custom Queries --> JPQL Projection
 
 SQL vs JPQL
 
-select fname, lname from customers;
+========
 
+Task: 
 
+new Spring Initilizer /boot project 
+a) name: vehiclerental
+b) dependencies: mysql, jpa, lombok
 
-select firstName, lastName from Customer;
+Create the following entities
+
+Vehicle: String regNo <<PK>>, fuelType, costPerDay
+Client: email, firstName
+Rental: 
+rental_id <<PK>> | vehilce_fk | client_fk | rent_from_date | rent_to_date
+
+Part 1: 
+insert vehicles
+
+Part 2:
+insert clients
+
+Part 3:
+rent a vehicle
+rental_id <<PK>> | vehilce_fk | client_fk           | rent_from_date | rent_to_date
+1                   KA12E341    harry@gmail.com       1-SEP-2024        NULL
+
+Part 4:
+return a vehicle
+
+rent a vehicle
+rental_id <<PK>> | vehilce_fk | client_fk           | rent_from_date | rent_to_date
+1                   KA12E341    harry@gmail.com       1-SEP-2024        4-SEP-2024
+
+Resume @ 4:30
+
 
 
 
