@@ -1499,3 +1499,53 @@ orderDao.findAll(); // select * from orders and also get items of orders by join
 By making CASCADE and FETCH.EAGER --> no need for ItemDao
 
 c) By default ManyToOne is EAGER fetching
+
+ @Transactional ===> method is atomic, everything commits else rollback
+
+Payload from client to place an order looks like:
+```
+XML:
+    <order>
+        <customer>
+            <email>anna@adobe.com</email>
+        </customer>
+        <items>
+                <item>
+                    <product id="5"></product>
+                    <qty>2</qty>
+                </item>
+                 <item>
+                    <product id="2"></product>
+                    <qty>1</qty>
+                </item>
+        </items>
+    </order>
+JSON:
+    {
+        "customer": {
+            "email": "anna@adobe.com"
+        },
+        "items": [
+            {
+                "product": {
+                    "id": 5
+                },
+                qty: 2
+            },
+            {
+                "product": {
+                    id: 2
+                },
+                qty: 1
+            }
+        ]
+    }
+```
+In Order:
+total has to be computed
+orderdate --> system date
+item amount needs to be calculated [ discount, tax]
+Each Product added to item --> sending only product id, not it's price, name
+
+DIRTY CHECKING:
+Within Transactional boundary if an entity becomes dirty, automatically UPDATE is sent to DB

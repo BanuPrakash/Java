@@ -4,8 +4,10 @@ import com.spring.orderapp.dao.CustomerDao;
 import com.spring.orderapp.dao.OrderDao;
 import com.spring.orderapp.dao.ProductDao;
 import com.spring.orderapp.entity.Customer;
+import com.spring.orderapp.entity.LineItem;
 import com.spring.orderapp.entity.Order;
 import com.spring.orderapp.entity.Product;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,8 +24,33 @@ public class OrderService {
     @Autowired
     private OrderDao orderDao;
 
+    /*
+    {
+        "customer": {
+            "email": "anna@adobe.com"
+        },
+        //  order.getItems();
+        "items": [
+            { "product": {"id": 5}, qty: 2},
+            {"product": { id: 2}, qty: 1}
+        ]
+    }
+     */
+    @Transactional
     public String placeOrder(Order order) {
-
+        double total = 0.0;
+        List<LineItem> items = order.getItems();
+        for(LineItem item: items) {
+            Product p = getProduct(item.getProduct().getId()); //65 line
+            if(item.getQty() > p.getQuantity()) {
+                throw new IllegalArgumentException("Product " + p.getName() + " not is Stock!!!");
+            }
+            p.setQuantity(p.getQuantity() - item.getQty()); // DIRTY CHECKING --> UPDATE
+            item.setAmount(p.getPrice() * item.getQty()); // product price + qty - discount + tax
+            total += item.getAmount();
+        }
+        order.setTotal(total);
+        orderDao.save(order); // saves order and it's line-items --> cascade
         return "Order Placed!!!";
     }
 
