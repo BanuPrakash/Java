@@ -1,5 +1,6 @@
 package com.spring.orderapp.client;
 
+import com.spring.orderapp.dto.OrderReport;
 import com.spring.orderapp.entity.Customer;
 import com.spring.orderapp.entity.LineItem;
 import com.spring.orderapp.entity.Order;
@@ -20,7 +21,16 @@ public class OrderClient implements CommandLineRunner {
     public void run(String... args) throws Exception {
        // newOrder();
        // printOrders();
+        printReport();
     }
+
+    private void printReport() {
+        List<OrderReport> reports = service.getReport();
+        for(OrderReport o: reports) {
+            System.out.println(o);
+        }
+    }
+
     private void printOrders() {
         List<Order> orders = service.getOrders();
         for(Order o : orders) {

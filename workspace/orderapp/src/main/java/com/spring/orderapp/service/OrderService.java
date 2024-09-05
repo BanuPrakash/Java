@@ -3,6 +3,7 @@ package com.spring.orderapp.service;
 import com.spring.orderapp.dao.CustomerDao;
 import com.spring.orderapp.dao.OrderDao;
 import com.spring.orderapp.dao.ProductDao;
+import com.spring.orderapp.dto.OrderReport;
 import com.spring.orderapp.entity.Customer;
 import com.spring.orderapp.entity.LineItem;
 import com.spring.orderapp.entity.Order;
@@ -23,6 +24,17 @@ public class OrderService {
     private CustomerDao customerDao; // generated class is wired
     @Autowired
     private OrderDao orderDao;
+
+    public List<OrderReport> getReport() {
+        return orderDao.getReport();
+    }
+
+    // custom INSERT, DELETE or UPDATE needs @Transactional
+    @Transactional
+    public Product changePrice(int id, double price) {
+        productDao.updateProductPrice(id, price);
+        return getProduct(id);
+    }
 
     public List<Product> byRange(double low, double high) {
         return productDao.findByPriceBetween(low, high);

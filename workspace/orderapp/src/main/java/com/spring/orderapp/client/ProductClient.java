@@ -19,7 +19,13 @@ public class ProductClient implements CommandLineRunner {
     public void run(String... args) throws Exception {
 //        addProduct();
        // printAllProducts();
-        printByRange();
+       // printByRange();
+       // modifyPrice();
+    }
+
+    private void modifyPrice() {
+        Product p = service.changePrice(4, 1234.11);
+        System.out.println(p);
     }
 
     private void printByRange() {

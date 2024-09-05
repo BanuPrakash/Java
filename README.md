@@ -1552,3 +1552,14 @@ Within Transactional boundary if an entity becomes dirty, automatically UPDATE i
 
 ======
 Custom Queries --> JPQL Projection
+
+SQL vs JPQL
+
+select fname, lname from customers;
+
+
+
+select firstName, lastName from Customer;
+
+
+
