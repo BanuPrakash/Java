@@ -19,6 +19,14 @@ public class ProductClient implements CommandLineRunner {
     public void run(String... args) throws Exception {
 //        addProduct();
        // printAllProducts();
+        printByRange();
+    }
+
+    private void printByRange() {
+        List<Product> products = service.byRange(5_000, 50_000);
+        for(Product p : products) {
+            System.out.println(p);
+        }
     }
 
     private void printAllProducts() {

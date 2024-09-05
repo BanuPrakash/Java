@@ -24,6 +24,10 @@ public class OrderService {
     @Autowired
     private OrderDao orderDao;
 
+    public List<Product> byRange(double low, double high) {
+        return productDao.findByPriceBetween(low, high);
+    }
+
     /*
     {
         "customer": {

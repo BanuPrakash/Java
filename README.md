@@ -1549,3 +1549,6 @@ Each Product added to item --> sending only product id, not it's price, name
 
 DIRTY CHECKING:
 Within Transactional boundary if an entity becomes dirty, automatically UPDATE is sent to DB
+
+======
+Custom Queries --> JPQL Projection
