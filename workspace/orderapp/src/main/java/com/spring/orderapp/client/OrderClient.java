@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 public class OrderClient implements CommandLineRunner {
     @Autowired
@@ -16,9 +18,20 @@ public class OrderClient implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        newOrder();
+       // newOrder();
+        printOrders();
     }
-
+    private void printOrders() {
+        List<Order> orders = service.getOrders();
+        for(Order o : orders) {
+            System.out.println(o.getCustomer().getFirstName() + "," + ", " + o.getTotal() + ", " + o.getOrderDate());
+            List<LineItem> items = o.getItems();
+            for(LineItem item : items) {
+                System.out.println(item.getProduct().getName() +", " + item.getQty() + ", " + item.getAmount());
+            }
+            System.out.println("*******");
+        }
+    }
     private void newOrder() {
         Order order = new Order();
         Customer c = Customer.builder().email("anna@adobe.com").build();
