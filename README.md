@@ -1316,3 +1316,80 @@ Solution: Factory method --> @Bean
 
 DataSource is a pool of database connection
 
+==========================================
+
+Day 3 Recap:
+
+Database and Web application:
+Part 1:
+```
+JDBC: Integration library to connect to database
+DriverManager.getConnection() factory method gets connection based on URL
+JDBC classes are provided by database vendors --> used Maven to manage dependency
+Servlets run within Servlet engine [Tomcat / Jetty / Netty ...]
+HttpServletRequest and HttpServletResponse objects are created by the servlet engine for every request from client, they are injected to Servlet's method based on type of Method request: GET / POST / PUT / DELETE / PATCH / ...
+doXXX() like doGet() and doPost() ..
+HttpServletRequest encapsulates data from client [ form data, browser data , OS data]
+HttpServletResponse is used to write response back to client.
+MVC Architectural pattern where : HTML + JSP are used for View, Servlet is for Controller. Model : business data and logic
+```
+
+Part 2:
+```
+Spring Framework: Container for life cycle management of beans and wiring dependencies --> loose coupling
+Metadata: XML or Annotation
+@Component, @Repository, @Service, @Controller, @RestController, @Configuration, @ControllerAdvice
+
+@Autowired ---> wiring dependencies
+to resolve ambiquity : @Primary, @Qualifier, @Profile, @ConditionalOnMissingBean
+
+Spring Container can be accessed using ApplicationContext interface
+
+```
+===========
+
+Day 4:
+ORM : Object Relational Mapping:
+Objects / class <---> Relational database tables
+fields/ instance variables <-----> columns of table
+
+Once Mapping is DONE, ORM are going to generate DDL {create, alter, drop } and DML {insert, delete, update, select} operations
+
+Java Class:
+```
+@Entity
+@Table(name="customers")
+public class Customer {
+    @Id
+    private String email;
+
+    @Column(name="FNAME")
+    private String firstName;
+
+    @Column(name="LNAME")
+    private String lastName;
+}
+
+@Id ---> Primary KEY
+
+table
+customers
+email (PK) | FNAME | LNAME
+
+```
+
+Spring Data JPA: Spring module simplifies the way we use ORM.
+Spring boot is highly opinated, it configures lot of things out of box:
+If we we choose to use Spring Data JPA
+1) Configures DataSource to use HikariCP 
+2) It uses Hibernate as default JPA Vendor
+3) It provides JpaRepository interfaces, we don't need to write Implentation classes [ no need for @Repository];
+Spring data jpa is going to generate implementation classes
+
+
+
+
+
+
+
+
