@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+// facade on DAO tier code
 @Service
 public class OrderService {
     @Autowired
@@ -39,5 +40,10 @@ public class OrderService {
 
     public List<Customer> getCustomers() {
         return customerDao.findAll();
+    }
+
+    // how many customer rows in table
+    public long getCustomerCount() {
+        return customerDao.count();
     }
 }

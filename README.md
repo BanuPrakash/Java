@@ -1413,3 +1413,8 @@ public interface CustomerDao extends JpaRepository<Customer, String> {
 no need for implmentation classes; Spring Data jpa is going to generate classes for ProductDao & CustomerDao
 Note: no @Repository classes
 ```
+Spring Boot
+CommandLineRunner --> run() method --> gets called as soon as spring container is created and initialized
+
+update products set qty = 100 where 1 = 1;
+
