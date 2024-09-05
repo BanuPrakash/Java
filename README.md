@@ -1386,9 +1386,21 @@ If we we choose to use Spring Data JPA
 3) It provides JpaRepository interfaces, we don't need to write Implentation classes [ no need for @Repository];
 Spring data jpa is going to generate implementation classes
 
+DDL: create , alter, drop operations
 
+1) spring.jpa.hibernate.ddl-auto=update
+* map to existing table, if required alter it to add columns, change datatype of column,...
+* create table if not exists
+--> top to down approach and hybrid
 
+2) spring.jpa.hibernate.ddl-auto=create
+* Application start --> create tables
+* on application temination --> drop tables
+Note: Used only for test environment
 
+3) spring.jpa.hibernate.ddl-auto=validate
+* map to existing tables, altering tables and creating new tables not supported
+--> Bottom to Top Approach [ DBA has provided you the tables]
 
 
 
