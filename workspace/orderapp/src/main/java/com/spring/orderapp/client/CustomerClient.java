@@ -17,8 +17,8 @@ public class CustomerClient implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        addCustomers();
-        printCustomers();
+       // addCustomers();
+       // printCustomers();
     }
 
     private void printCustomers() {

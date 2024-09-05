@@ -1418,3 +1418,29 @@ CommandLineRunner --> run() method --> gets called as soon as spring container i
 
 update products set qty = 100 where 1 = 1;
 
+====================
+
+Mapping Associations:
+1) One to One
+2) One to many
+3) Many to one
+4) many to many
+
+----
+
+DDD: Domain Driven Design ==> need to find root aggregate
+https://martinfowler.com/bliki/DomainDrivenDesign.html
+https://martinfowler.com/tags/domain%20driven%20design.html
+
+```
+    With Many to one --> @JoinColumn will come in the owning table <<orders>>
+  @ManyToOne
+  @JoinColumn(name="customer_fk")
+  private Customer customer;
+ 
+ With one to many --> @Joincolumn will introduce the FK in child side <<items>>
+    @OneToMany
+    @JoinColumn(name = "order_fk")
+    private List<LineItem> items = new ArrayList<>();
+
+```
