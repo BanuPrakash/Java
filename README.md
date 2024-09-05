@@ -1444,3 +1444,58 @@ https://martinfowler.com/tags/domain%20driven%20design.html
     private List<LineItem> items = new ArrayList<>();
 
 ```
+
+Without cascade: assume 1 order has 4 items;
+```
+Save:
+    save(order);
+    save(i1);
+    save(i2);
+    save(i3);
+    save(i4);
+Delete:
+    delete(order);
+    delete(i1);
+    delete(i2);
+    delete(i3);
+    delete(i4);
+```
+
+With Cascade:assume 1 order has 4 items;
+
+```
+  @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "order_fk")
+    private List<LineItem> items = new ArrayList<>();
+
+Save:
+ save(order); --> save order and it's line items also
+Delete:
+ delete(order); --> delete order and it's line items
+```
+
+Fetch operations:
+a) by default One to Many association will lazy fetch association
+
+orderDao.findAll(); // select * from orders
+
+here items are not fetched from database
+
+let's take there are 3 orders, we need to do explictly
+
+itemDao.getItemForOrder(1);
+itemDao.getItemForOrder(2);
+itemDao.getItemForOrder(3);
+
+
+b) by making assocation as EAGER fetching
+```
+ @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+ @JoinColumn(name = "order_fk")
+ private List<LineItem> items = new ArrayList<>();
+```
+orderDao.findAll(); // select * from orders and also get items of orders by joining ...
+
+By making CASCADE and FETCH.EAGER --> no need for ItemDao
+
+c) By default ManyToOne is EAGER fetching

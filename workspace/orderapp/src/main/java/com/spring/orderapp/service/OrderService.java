@@ -1,8 +1,10 @@
 package com.spring.orderapp.service;
 
 import com.spring.orderapp.dao.CustomerDao;
+import com.spring.orderapp.dao.OrderDao;
 import com.spring.orderapp.dao.ProductDao;
 import com.spring.orderapp.entity.Customer;
+import com.spring.orderapp.entity.Order;
 import com.spring.orderapp.entity.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,7 +19,19 @@ public class OrderService {
     private ProductDao productDao; // generated class is wired
     @Autowired
     private CustomerDao customerDao; // generated class is wired
+    @Autowired
+    private OrderDao orderDao;
 
+    public String placeOrder(Order order) {
+
+        return "Order Placed!!!";
+    }
+
+    // EAGER fetch gives line-items also
+    // gets Customer also because ManyToOne is EAGER by default
+    public List<Order> getOrders() {
+        return  orderDao.findAll();
+    }
     public List<Product> getProducts() {
         return productDao.findAll();
     }

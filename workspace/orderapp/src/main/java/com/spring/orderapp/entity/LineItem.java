@@ -17,4 +17,11 @@ public class LineItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int itemid;
 
+    @ManyToOne
+    @JoinColumn(name = "product_fk")
+    private Product product;
+
+    private int qty;
+
+    private double amount;
 }
