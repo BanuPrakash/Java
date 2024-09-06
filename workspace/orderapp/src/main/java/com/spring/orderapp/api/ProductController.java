@@ -3,6 +3,11 @@ package com.spring.orderapp.api;
 import com.spring.orderapp.entity.Product;
 import com.spring.orderapp.service.EntityNotFoundException;
 import com.spring.orderapp.service.OrderService;
+import io.swagger.v3.oas.annotations.Hidden;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +41,16 @@ public class ProductController {
     }
 
     // GET http://localhost:8080/api/products/3
+    @Operation(
+            description = "Service that return a Product",
+            summary = "This service returns a Product by the ID",
+            responses = {
+                    @ApiResponse(description = "Successful Operation", responseCode = "200",
+                            content = @Content(mediaType = "application/json",
+                                    schema = @Schema(implementation = Product.class))),
+                    @ApiResponse(responseCode = "404", description = "Product  Not found", content = @Content),
+                    @ApiResponse(responseCode = "401", description = "Authentication Failure", content = @Content(schema = @Schema(hidden = true)))
+            })
     @GetMapping("/{pid}")
     public Product getProduct(@PathVariable("pid") int id) throws EntityNotFoundException {
         return service.getProduct(id);
@@ -55,6 +70,7 @@ public class ProductController {
     }
 
     // PUT or PATCH for UPDATE
+    @Hidden
     @PutMapping("/{id}")
     public Product updateProduct(@PathVariable("id") int id, @RequestBody Product p) throws EntityNotFoundException{
         return service.changePrice(id, p.getPrice());

@@ -1803,7 +1803,38 @@ Validation failed with 2 errors:
 
 ```
 
+Task:
+1) CustomerController
+2) VehicleRentalApp --> Restful WS
 
+Testing and other bits and pieces
+
+```
+
+@WebAppConfiguration
+@AutoConfigureMockMvc
+@SpringBootTest(classes = OrderappApplication.class)
+// or without security
+//@WebMvcTest(ProductController.class)
+public class ProductControllerTest {
+
+```
+
+API Documentation
+* RAML https://raml.org/ --> we need to "YML" file
+* OpenAPI --> Swagger
+
+  <!-- OpenAPI -->
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+            <version>2.5.0</version>
+        </dependency>
+
+Once this is added, Documentation is created for @Controller and @RestController classes. No Need to write any code.
+
+We can do the customization.
+http://localhost:8080/swagger-ui/index.html
 
 
 
