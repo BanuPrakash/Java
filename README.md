@@ -1794,7 +1794,6 @@ public @ResponseBody Product addProduct(@RequestBody @Valid Product p) {
 
 ```
 
-w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public com.spring.orderapp.entity.Product com.spring.orderapp.api.ProductController.addProduct(com.spring.orderapp.entity.Product) with 3 errors: [Field error in object 'product' on field 'quantity': rejected value [-300]; codes [Min.product.quantity,Min.quantity,Min.int,Min]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [product.quantity,quantity]; arguments []; default message [quantity],1]; default message [Quantity has to be 1, you entered -300]] [Field error in object 'product' on field 'price': rejected value [-287000.0]; codes [Min.product.price,Min.price,Min.double,Min]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [product.price,price]; arguments []; default message [price],10]; default message [Price has to be 10, you entered -287000.0]] [Field error in object 'product' on field 'name': rejected value [null]; codes [NotNull.product.name,NotNull.name,NotNull.java.lang.String,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [product.name,name]; arguments []; default message [name]]; default message [Name is required]] ]
 
 
 MethodArgumentNotValidException: 
