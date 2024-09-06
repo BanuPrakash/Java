@@ -30,3 +30,13 @@ Content-Type: application/json
 GET http://localhost:8080/api/products?low=500&high=50000
 Accept: application/json
 
+
+### @name="add invalid product"
+POST http://localhost:8080/api/products
+Accept: application/json
+Content-Type: application/json
+
+{
+  "price": -287000.00,
+  "quantity": -300
+}

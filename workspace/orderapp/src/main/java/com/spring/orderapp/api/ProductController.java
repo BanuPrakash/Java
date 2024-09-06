@@ -3,6 +3,7 @@ package com.spring.orderapp.api;
 import com.spring.orderapp.entity.Product;
 import com.spring.orderapp.service.EntityNotFoundException;
 import com.spring.orderapp.service.OrderService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -49,7 +50,7 @@ public class ProductController {
      @ResponseBody is optional
      */
     @PostMapping
-    public @ResponseBody Product addProduct(@RequestBody Product p) {
+    public @ResponseBody Product addProduct(@RequestBody @Valid Product p) {
         return service.addProduct(p);
     }
 
