@@ -11,6 +11,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -65,6 +66,7 @@ public class ProductController {
      @ResponseBody is optional
      */
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public @ResponseBody Product addProduct(@RequestBody @Valid Product p) {
         return service.addProduct(p);
     }

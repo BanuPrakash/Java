@@ -1836,10 +1836,39 @@ Once this is added, Documentation is created for @Controller and @RestController
 We can do the customization.
 http://localhost:8080/swagger-ui/index.html
 
+=================================
 
+Testing
+* Unit Testing
+* Integration Testing
+* E2E Testing [ next week along with React]
 
+Unit testing for Controller only.
 
+What does Spring Boot provide?
+* JUnit as Unit testing framework. TestNG is the alternate
+* Mockito --> to mock depenencies. To create mock objects
+* JSONPath -> to validate JSON data returned from Controller
+https://jsonpath.com/
+```
+$
+$.firstName
+$.age
+$.address.city
+$.phoneNumbers[0].type
+```
 
+* Hamcrest --> assertion matchers 
+https://hamcrest.org/JavaHamcrest/tutorial
+
+====
+For testing We don't need the server to be running
+@WebMvcTest(ProductController.class) does:
+1) creates a minature spring container and gives TestDispatcherServlet to handle REQUESTS
+2) loads ProductController onto the container. Now within Spring contianer only ProductController is availabe.
+No OrderController, OrderService, DAO code...
+
+  private MockMvc mvc; ==> to perform GET / POST/ PUT/DELETE operations on end point
 
 
 
