@@ -17,3 +17,16 @@ Content-Type: application/json
   "quantity": 300
 }
 
+### @name="update product"
+PUT http://localhost:8080/api/products/3
+Accept: application/json
+Content-Type: application/json
+
+{
+  "price": 8731.33
+}
+
+### @name="get products by Range"
+GET http://localhost:8080/api/products?low=500&high=50000
+Accept: application/json
+

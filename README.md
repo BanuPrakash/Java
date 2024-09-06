@@ -1735,7 +1735,6 @@ If we want to Java <---> XML we need to explicitly configure
 3) DispatcherServlet: intercpets all HTTP requests [URL-pattern is "*"]
 =========
 
-Resume @ 11:10
 
 
 

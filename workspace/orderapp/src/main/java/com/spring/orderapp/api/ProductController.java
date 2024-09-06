@@ -15,6 +15,8 @@ public class ProductController {
     private final OrderService service; // Constructor DI instead of @Autowired
 
     // GET http://localhost:8080/api/products
+    // Query Parameter
+    // GET http://localhost:8080/api/products?low=500&high=50000
     /*
     returned List<Product> is given to ContentNegotiationHandlers like Jackson library
     based on Accept:application/json
@@ -22,8 +24,13 @@ public class ProductController {
     returned JSON / XML is added to response body and sent to client
      */
     @GetMapping
-    public List<Product> getProducts() {
-        return service.getProducts();
+    public List<Product> getProducts(@RequestParam(name = "low", defaultValue = "0.0") double low,
+                                     @RequestParam(name = "high", defaultValue = "0.0") double high ) {
+        if(low == 0.0 && high == 0.0) {
+            return service.getProducts();
+        } else  {
+            return service.byRange(low,high);
+        }
     }
 
     // GET http://localhost:8080/api/products/3
@@ -43,5 +50,11 @@ public class ProductController {
     @PostMapping
     public @ResponseBody Product addProduct(@RequestBody Product p) {
         return service.addProduct(p);
+    }
+
+    // PUT or PATCH for UPDATE
+    @PutMapping("/{id}")
+    public Product updateProduct(@PathVariable("id") int id, @RequestBody Product p) {
+        return service.changePrice(id, p.getPrice());
     }
 }
