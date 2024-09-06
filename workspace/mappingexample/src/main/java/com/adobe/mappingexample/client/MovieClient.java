@@ -14,9 +14,9 @@ public class MovieClient implements CommandLineRunner {
     private final MovieService movieService;
     @Override
     public void run(String... args) throws Exception {
-       first();
-       // second();
-        //third();
+       //first();
+        //second();
+        third();
     }
 
     private void third() {
@@ -37,7 +37,7 @@ public class MovieClient implements CommandLineRunner {
         a1.setName("John Travolta");
 
         Actor a2 = new Actor();
-        a2.setName("Uma Thruman");
+        a2.setName("Uma Thurman");
 
         m1.getActors().add(a1);
         m1.getActors().add(a2);

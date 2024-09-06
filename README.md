@@ -1870,9 +1870,165 @@ No OrderController, OrderService, DAO code...
 
   private MockMvc mvc; ==> to perform GET / POST/ PUT/DELETE operations on end point
 
+===============
 
+OneToMany
+ManyToOne
+Aggregate ==> relationship
 
+mappedBy: 
+What if we need bi-directional relationship? // AVOID as much as possibile
 
+```
+@Entity
+@Table(name="orders")
+public class Order {
+ 
+    @ManyToOne
+    @JoinColumn(name="customer_fk") // Foreign key column
+    private Customer customer;
+..
+}
 
+@Entity
+@Table(name="customers")
+public class Customer {
+    @Id
+    private  String email;
 
+    @Column(name="FNAME", length = 100)
+    private String firstName;
 
+    @Column(name="LNAME", length = 100)
+    private String lastName;
+
+    @OneToMany(mappedBy = "customer")
+    private List<Order> orders = ArrayList<>();
+}
+
+```
+
+=========================
+
+One-to-One: Employee <--> Laptop
+```
+@Entity
+@Table(name="employees")
+public class Employee {
+    @Id
+    String email;
+    String firstName;
+    ...
+}
+
+@Entity
+@Table(name="laptops")
+public class Laptop {
+    @Id
+    String serailNo;
+    String OS;
+    String make;
+    ...
+    @OneToOne
+    @JoinColumn("emp_fk")
+    Employee employee;
+}
+
+employees
+email                   | FNAME
+raj@adobe.com           Raj
+
+laptops
+serial_no     | os      | make              emp_fk
+2lw4qb1         ios     MAC chipset         raj@adobe.com
+
+```
+
+======
+
+Many To Many : rare relationship
+
+Student <---> classes
+
+```
+@Entity
+@Table(name="students")
+public class Student {
+    @Id
+    int sid;
+    String firstName;
+   
+}
+
+@Entity
+@Table(name="classes")
+public class Class {
+    @Id
+    int cid;
+    String subject;
+   
+}
+
+students
+sid | FNAME
+1       A
+2       B
+3       C
+
+classes
+cid    | subject
+23      REACT
+24      java
+25      C++
+26      AWS
+
+many-to-many needs a link table
+students_classes
+sid     | cid
+1           23
+1           26
+2           23
+2           24
+2           26
+
+```
+
+When a student is going to enroll for a subject?
+we need a link class
+Student <-----> StudentClass <---> Class
+Student to StundentClass [ one to many]
+class to StudentClass [ one to many]
+
+```
+@Entity
+@Table(name="students")
+public class Student {
+    @Id
+    int sid;
+    String firstName;
+   
+}
+
+@Entity
+@Table(name="classes")
+public class Class {
+    @Id
+    int cid;
+    String subject;
+   
+}
+
+@Entity
+@Table(name="student_classes")
+public class StudentClass {
+    @Id
+    int id
+
+    @ManyToOne
+    @JoinColumn("sid)
+    Student s;
+
+    @ManyToOne
+    @JoinColumn("cid)
+    Class c;
+}
