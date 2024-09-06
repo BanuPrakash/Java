@@ -1559,6 +1559,7 @@ SQL vs JPQL
 
 Task: 
 
+```
 new Spring Initilizer /boot project 
 a) name: vehiclerental
 b) dependencies: mysql, jpa, lombok
@@ -1589,7 +1590,7 @@ rental_id <<PK>> | vehilce_fk | client_fk           | rent_from_date | rent_to_d
 1                   KA12E341    harry@gmail.com       1-SEP-2024        4-SEP-2024
 
 
-
+```
 
 
 
