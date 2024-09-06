@@ -1,6 +1,7 @@
 package com.spring.orderapp.client;
 
 import com.spring.orderapp.entity.Product;
+import com.spring.orderapp.service.EntityNotFoundException;
 import com.spring.orderapp.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -23,7 +24,7 @@ public class ProductClient implements CommandLineRunner {
        // modifyPrice();
     }
 
-    private void modifyPrice() {
+    private void modifyPrice() throws EntityNotFoundException {
         Product p = service.changePrice(4, 1234.11);
         System.out.println(p);
     }

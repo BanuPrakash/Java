@@ -1735,6 +1735,33 @@ If we want to Java <---> XML we need to explicitly configure
 3) DispatcherServlet: intercpets all HTTP requests [URL-pattern is "*"]
 =========
 
+Exception Handling in Controller and RestController
+
+@Controller: Not covering --> Traditional web application
+@RestController --> for RESTful WS
+
+@ControllerAdvice is used as GlobalException handler
+
+Changes:
+1) EntityNotFoundException.java
+2) OrderService:  Product getProduct(int id) , Product changePrice(int id, double price),  public String placeOrder(Order order) throws EntityNotFoundException
+
+3) ProductController: Product getProduct(@PathVariable("pid") int id) throws EntityNotFoundException, updateProduct(),,
+
+4) OrderController: String placeOrder()...
+
+5) ProductClient:  void modifyPrice() 
+
+6) OrderClient:
+ try {
+            service.placeOrder(order);
+        } catch (EntityNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+7) GlobalExecptionHandler
+
+
 
 
 

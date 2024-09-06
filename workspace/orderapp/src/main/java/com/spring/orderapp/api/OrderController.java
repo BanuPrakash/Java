@@ -2,6 +2,7 @@ package com.spring.orderapp.api;
 
 import com.spring.orderapp.dto.OrderReport;
 import com.spring.orderapp.entity.Order;
+import com.spring.orderapp.service.EntityNotFoundException;
 import com.spring.orderapp.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +16,7 @@ public class OrderController {
     private final OrderService service;
 
     @PostMapping
-    public String placeOrder(@RequestBody Order order) {
+    public String placeOrder(@RequestBody Order order) throws EntityNotFoundException {
         return service.placeOrder(order);
     }
 

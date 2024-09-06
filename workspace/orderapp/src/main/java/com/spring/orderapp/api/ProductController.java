@@ -1,6 +1,7 @@
 package com.spring.orderapp.api;
 
 import com.spring.orderapp.entity.Product;
+import com.spring.orderapp.service.EntityNotFoundException;
 import com.spring.orderapp.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +36,7 @@ public class ProductController {
 
     // GET http://localhost:8080/api/products/3
     @GetMapping("/{pid}")
-    public Product getProduct(@PathVariable("pid") int id) {
+    public Product getProduct(@PathVariable("pid") int id) throws EntityNotFoundException {
         return service.getProduct(id);
     }
 
@@ -54,7 +55,7 @@ public class ProductController {
 
     // PUT or PATCH for UPDATE
     @PutMapping("/{id}")
-    public Product updateProduct(@PathVariable("id") int id, @RequestBody Product p) {
+    public Product updateProduct(@PathVariable("id") int id, @RequestBody Product p) throws EntityNotFoundException{
         return service.changePrice(id, p.getPrice());
     }
 }

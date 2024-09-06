@@ -5,6 +5,7 @@ import com.spring.orderapp.entity.Customer;
 import com.spring.orderapp.entity.LineItem;
 import com.spring.orderapp.entity.Order;
 import com.spring.orderapp.entity.Product;
+import com.spring.orderapp.service.EntityNotFoundException;
 import com.spring.orderapp.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -58,6 +59,10 @@ public class OrderClient implements CommandLineRunner {
                 .build();
         order.getItems().add(item1);
         order.getItems().add(item2);
-        service.placeOrder(order);
+        try {
+            service.placeOrder(order);
+        } catch (EntityNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

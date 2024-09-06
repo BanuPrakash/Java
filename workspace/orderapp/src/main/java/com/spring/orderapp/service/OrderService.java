@@ -31,7 +31,7 @@ public class OrderService {
 
     // custom INSERT, DELETE or UPDATE needs @Transactional
     @Transactional
-    public Product changePrice(int id, double price) {
+    public Product changePrice(int id, double price) throws EntityNotFoundException{
         productDao.updateProductPrice(id, price);
         return getProduct(id);
     }
@@ -53,7 +53,7 @@ public class OrderService {
     }
      */
     @Transactional
-    public String placeOrder(Order order) {
+    public String placeOrder(Order order) throws EntityNotFoundException{
         double total = 0.0;
         List<LineItem> items = order.getItems();
         for(LineItem item: items) {
@@ -83,12 +83,12 @@ public class OrderService {
         return productDao.save(p);
     }
 
-    public Product getProduct(int id) {
+    public Product getProduct(int id) throws EntityNotFoundException {
         Optional<Product> opt = productDao.findById(id);
         if(opt.isPresent()) {
             return opt.get();
         } else {
-            throw new IllegalArgumentException("Product with id " + id + " doesn't exist !!!");
+            throw new EntityNotFoundException("Product with id " + id + " doesn't exist !!!");
         }
     }
     public Customer saveCustomer(Customer c) {
