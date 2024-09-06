@@ -1592,5 +1592,154 @@ rental_id <<PK>> | vehilce_fk | client_fk           | rent_from_date | rent_to_d
 
 ```
 
+Day 4 Recap:
+
+```
+ORM --> JPA --> Spring Data JPA
+JpaRepository --> create interface, implementation classes having CRUD operations are created by Spring Data Jpa for the methods
+present in JpaRepository.
+We can add custom methods in interface.
+@Query can be used to write SQL of JP-QL query.
+
+@Entity --> compulsory
+@Id --> A must to specify Primary Key
+@Column --> Mapping field to a table column [ optional]
+@Table --> optional; mapping class to table
+
+Association Mapping:
+1) one-to-one
+2) one-to-many
+3) many-to-one
+4) many-to-many
+
+@JoinColumn: to introduce Foreign Key, where FK is introduced is dependent on OneToMany, or ManyToOne
+ManyToOne introduces FK in owning table/entiry
+OneToMany introduces FK in child table/entity
+
+Cascade, EAGER / LAZY fetch operations
+```
+
+Day 5:
+
+Building RESTful WebServices.
+
+Rendering ---> data to presentation
+
+* Server Side Rendering
+Cons:
+-> We can't have heterogenous clients like Web / Standalone/ Mobile / Tv
+-> Heavy payload
+
+Pros:
+--> SEO
+--> Faster
+
+* Client Side Rendering
+Pros:
+-> We can have heterogenous clients like Web / Standalone/ Mobile / Tv
+-> payload is light; between client and server only representation is passed in various formats like JSON / XML
+
+Cons:
+-> Thick clients
+-> Not SEO
+-> Compromise wrt SPEED
+
+
+RESTful: REpresentational State Transfer
+
+Resource: anything which can be named and present on server like file, database, printer,..
+Representation: State of resource at a given point of time
+Content Negotiation: representation served in various formats like JSON / XML/ CSV
+
+REST uses HTTP URI to refer to a resource [ plural nouns]
+
+http://server.com:port/api/products
+http://server.com:port/api/customers
+http://server.com:port/api/vehicles
+
+HTTP methods : verbs --> CRUD operations
+
+1) POST --> CREATE a new sub resource under a resource
+CREATE:
+POST http://server.com:port/api/products
+payload: new product
+
+2) GET --> READ resources
+GET http://server.com:port/api/products
+get all products
+
+Use PathParameter/PathVariable to get a resource based on PK field
+GET http://server.com:port/api/products/4
+get a product whose PK is "4"
+
+Use QueryParameter/RequestParam to get a subset of resources
+GET http://server.com:port/api/products?low=500&high=5000
+get all products whose price is between 500 and 5000
+GET http://server.com:port/api/products?page=1&size=20
+paginated data: 20 records from 1 page
+
+GET http://server.com:port/api/customers/banu@gmail.com/orders
+get all orders of "banu@gmail.com"
+
+3) PUT/PATCH --> UPDATE
+PUT http://server.com:port/api/products/3
+payload: new product data to update a product whose id is "3"
+
+4)  DELETE --> DELETE
+
+DELETE http://server.com:port/api/products/5
+delete a product identified by "5" as PK
+
+Note: GET and DELETE --> No Payload --> Safe methods --> IDEMPOTENT
+
+===============================
+
+Spring MVC Module: for building RESTful WS and Traditional Web application
+
+```
+    @RestController
+    @RequestMapping("/products")
+    public class ProductController {
+        @Autowired
+        OrderService service;
+        @GetMapping()
+        public List<Product> getProducts() {
+            return service.getProducts();
+        }
+
+        @PostMapping()
+        m2(@RequestBody Product p) {
+            ...
+        }
+    }
+
+
+    @RestController
+    @RequestMapping("/orders")
+    public class OrderController {
+        @Autowired
+        OrderService service;
+
+```
+
+ContentNegotiationHandler
+
+HTTP Header:
+Accept: application/json
+Java <--> data formats [JSON/ XML]
+
+Spring BOOT 
+1) for MVC by default adds Jackson library for Java <--> JSON
+If we want to Java <---> XML we need to explicitly configure
+2) Embedded Tomcat Container
+3) DispatcherServlet: intercpets all HTTP requests [URL-pattern is "*"]
+=========
+
+
+
+
+
+
+
 
 
