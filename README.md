@@ -1793,11 +1793,7 @@ ProductController:
 public @ResponseBody Product addProduct(@RequestBody @Valid Product p) {
 
 ```
-
-
-
 MethodArgumentNotValidException: 
-
 ```
 Validation failed with 2 errors: 
 
@@ -1806,6 +1802,8 @@ Validation failed with 2 errors:
 [Field error in object 'product' on field 'price': [Price has to be 10, you entered -287000.0]] ]
 
 ```
+
+
 
 
 
