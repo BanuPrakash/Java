@@ -1,0 +1,19 @@
+### @name="get all products"
+GET http://localhost:8080/api/products
+Accept: application/json
+
+### @name="get products by ID"
+GET http://localhost:8080/api/products/4
+Accept: application/json
+
+### @name="add product"
+POST http://localhost:8080/api/products
+Accept: application/json
+Content-Type: application/json
+
+{
+  "name": "Macbook Pro",
+  "price": 287000.00,
+  "quantity": 300
+}
+
