@@ -3,10 +3,7 @@ package com.spring.orderapp.security.api;
 import com.spring.orderapp.security.SignUpRequest;
 import com.spring.orderapp.security.service.AuthenticationService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("auth/")
@@ -19,5 +16,10 @@ public class AuthController {
     public String register(@RequestBody SignUpRequest request) {
         System.out.println("Called " + request);
         return service.register(request);
+    }
+
+    @PostMapping("login")
+    public String login(@RequestParam String email, @RequestParam String password) {
+        return service.login(email, password);
     }
 }

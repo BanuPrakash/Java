@@ -37,7 +37,7 @@ public class SecurityConfiguration {
     public SecurityFilterChain configure(HttpSecurity security) throws Exception {
         security.csrf(AbstractHttpConfigurer::disable).
                 authorizeHttpRequests(requests -> requests
-                        .requestMatchers("auth/register").permitAll()
+                        .requestMatchers("auth/**").permitAll()
                         .requestMatchers("/api/orders/**").hasRole("ADMIN")
                         .anyRequest().permitAll())
                 .sessionManagement(mgmt -> mgmt.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
