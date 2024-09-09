@@ -4,28 +4,45 @@ POST http://localhost:8080/auth/register
 Accept: text/plain
 Content-Type: application/json
 
+{
+  "email": "george@adobe.com",
+  "username": "George",
+  "password": "secret",
+  "roles": [
+    {
+      "name": "ROLE_ADMIN",
+      "description": "Administrator has full access"
+    },
+    {
+      "name": "ROLE_USER",
+      "description": "Restrictedaccess"
+    }]
+}
+//
 //{
-//  "email": "george@adobe.com",
-//  "username": "George",
+//  "email": "rita@adobe.com",
+//  "username": "Rita",
 //  "password": "secret",
 //  "roles": [
-//    {
-//      "name": "ROLE_ADMIN",
-//      "description": "Administrator has full access"
-//    },
 //    {
 //      "name": "ROLE_USER",
 //      "description": "Restrictedaccess"
 //    }]
 //}
 
+### @name="Login"
+
+POST http://localhost:8080/auth/login
+Accept: application/json
+Content-Type: application/json
+
 {
   "email": "rita@adobe.com",
-  "username": "Rita",
-  "password": "secret",
-  "roles": [
-    {
-      "name": "ROLE_USER",
-      "description": "Restrictedaccess"
-    }]
+  "password": "secret"
 }
+
+### @name="Access protected resource"
+
+GET http://localhost:8080/api/orders
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyaXRhQGFkb2JlLmNvbSIsImlhdCI6MTcyNTg3NzcxOSwiZXhwIjoxNzI1ODc5MTU5LCJyb2xlcyI6WyJST0xFX1VTRVIiXSwiaXNzIjoiaHR0cHM6Ly9zZWN1cml0eS5hZG9iZS5jb20ifQ.WtJVm0Yzkqna3g9MHMTCPFVhR8Yv4KcMRvU2o8fTET0

@@ -1,5 +1,6 @@
 package com.spring.orderapp.security.api;
 
+import com.spring.orderapp.security.SignInRequest;
 import com.spring.orderapp.security.SignUpRequest;
 import com.spring.orderapp.security.service.AuthenticationService;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +20,7 @@ public class AuthController {
     }
 
     @PostMapping("login")
-    public String login(@RequestParam String email, @RequestParam String password) {
-        return service.login(email, password);
+    public String login(@RequestBody SignInRequest request) {
+        return service.login(request.getEmail(), request.getPassword());
     }
 }

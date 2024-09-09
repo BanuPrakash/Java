@@ -2196,5 +2196,62 @@ Stateful: Server has client data like principle and roles stored in SecurityCont
 
 =========
 
-eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnZW9yZ2VAYWRvYmUuY29tIiwiaWF0IjoxNzI1ODc1NzI5LCJleHAiOjE3MjU4NzcxNjksInJvbGVzIjpbIlJPTEVfVVNFUiIsIlJPTEVfQURNSU4iXSwiaXNzIjoiaHR0cHM6Ly9zZWN1cml0eS5hZG9iZS5jb20ifQ.
-jnxpsXXJTOsxJVZIfELWReZRtnC80n9C4ubefv5PY14
+
+Flow:
+1) Registration
+
+1.1)
+secuity.http
+```
+POST http://localhost:8080/auth/register
+Accept: text/plain
+Content-Type: application/json
+
+{
+  "email": "george@adobe.com",
+  "username": "George",
+  "password": "secret",
+  "roles": [
+    {
+      "name": "ROLE_ADMIN",
+      "description": "Administrator has full access"
+    },
+    {
+      "name": "ROLE_USER",
+      "description": "Restrictedaccess"
+    }]
+}
+
+1.2)
+@RestController
+@RequestMapping("auth/")
+@RequiredArgsConstructor
+public class AuthController {
+
+    @PostMapping("register")
+    public String register(@RequestBody SignUpRequest request) {
+ 
+
+1.3)
+AuthenticationService --> register
+
+1.4) JwtService --> generateToken
+
+======
+
+2) login
+
+
+POST http://localhost:8080/auth/login
+Accept: application/json
+Content-Type: application/json
+
+{
+  "email": "rita@adobe.com",
+  "password": "secret"
+}
+
+AuthController --> AuthenticationService --> login --> JWTService --> generateToken
+
+3) Access Protected Resource
+JwtAuthenticationFilter extends OncePerRequestFilter
