@@ -2119,6 +2119,7 @@ http://localhost:8080/logout
 
 
 
+SecurityContext is associated with JSESSIONID, it is destroyed when we logout or inactive interval [ 30 min inactive interval]
 
 
 
