@@ -2118,8 +2118,21 @@ Using generated security password: cdafa760-835a-48e4-a8f4-b006e22d6013
 http://localhost:8080/logout
 
 
-
 SecurityContext is associated with JSESSIONID, it is destroyed when we logout or inactive interval [ 30 min inactive interval]
 
+Session Hijacking: any other uses gets an an access to JSESSIONID --> he can gain access to your account.
 
+How to protect it? HTTPS protocol
 
+===================================
+
+JDBCAcuthentication using Spring Security --> Security Database Schema
+https://docs.spring.io/spring-security/reference/servlet/appendix/database-schema.html
+
+spring.sql.init.mode=always
+
+it exustes resources/schema.sql and resources/data.sql are executed
+schema.sql ===> DDL
+data.sql ==> DML
+
+https://bcrypt-generator.com/
