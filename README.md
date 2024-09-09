@@ -2183,3 +2183,14 @@ HMACSHA256(
  More Secure applications will use "private salt / key" to generate and "public key" to validate
 ```
 
+* JPA instead of default Spring Security Schema
+User <---> Role as ManyToMany relationship
+
+======
+
+* JWT needs to be added
+* Registration and Login functionalities using JSON {not using form}
+* on Sucessfull login needs to send JSON token to client
+* JWT validation needs to be done whenever user access protected resources
+
+=========
