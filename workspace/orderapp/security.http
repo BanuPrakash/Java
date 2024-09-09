@@ -1,0 +1,31 @@
+### @name="Register"
+
+POST http://localhost:8080/auth/register
+Accept: text/plain
+Content-Type: application/json
+
+//{
+//  "email": "george@adobe.com",
+//  "username": "George",
+//  "password": "secret",
+//  "roles": [
+//    {
+//      "name": "ROLE_ADMIN",
+//      "description": "Administrator has full access"
+//    },
+//    {
+//      "name": "ROLE_USER",
+//      "description": "Restrictedaccess"
+//    }]
+//}
+
+{
+  "email": "rita@adobe.com",
+  "username": "Rita",
+  "password": "secret",
+  "roles": [
+    {
+      "name": "ROLE_USER",
+      "description": "Restrictedaccess"
+    }]
+}
