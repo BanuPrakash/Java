@@ -2187,6 +2187,7 @@ HMACSHA256(
 User <---> Role as ManyToMany relationship
 
 ======
+Stateful: Server has client data like principle and roles stored in SecurityContext.
 
 * JWT needs to be added
 * Registration and Login functionalities using JSON {not using form}
@@ -2194,3 +2195,4 @@ User <---> Role as ManyToMany relationship
 * JWT validation needs to be done whenever user access protected resources
 
 =========
+
