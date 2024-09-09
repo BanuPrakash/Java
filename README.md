@@ -2032,3 +2032,93 @@ public class StudentClass {
     @JoinColumn("cid)
     Class c;
 }
+```
+
+========
+
+Recap:
+
+OOP, SOLID, Reflection API,..
+Generalization and Specialization relationship --> Inheritance --> extends --> IS A
+override and overload methods
+
+Realition Relationship --> Contract --> implements --> can have multiple contract
+
+Note:
+class can extend a class [ single class]
+class can implement  multiple interfaces
+interface can extend another interface
+
+Anonymous class, FunctionalInterface --> lambda expression
+HOF -> filter, map, reduce, forEach, collect, .. --> function which can accept function as argument
+
+JCF: Comparable and Comparator, Arrays and Collections algorithm classes
+List, Set and Map
+
+Exception Handling
+try, catch, finally, throws
+
+Maven based project, database connectivity using JDBC, Web based application using Servlet API
+Servlet engine --> Tomcat / Jetty / Netty / ...
+Servlet and JSP --> MVC architecture
+
+===========
+
+Spring Container: life cycle management of bean, dependency Injection
+@Component --> simple utility class
+@Repository --> CRUD operations
+Note we did'nt write @Repository classes because Spring Data JPA for JpaRepository we create will create @Repository
+@Query
+@Service --> a facade over @Repository and business logic
+@RestController
+@Configuration --> @Bean factory method
+
+Other annotations:
+@Autowired, @RequestBody, @RequestParam, @PathVariable, @ControllerAdvice, @ExceptionHandler
+jakarata.valiadation.constraints like @NotBlank, @Min, @Max, @Past, @Future, ... 
+@Valid
+
+==============
+
+ORM and Hibernate with JPA specification
+@Entity, @Table, @Id, @GeneratedValue, @Column
+@ManyToOne, @OneToMany, @JoinColumn
+@OneToOne, @ManyToMany, @JoinTable
+
+===========================================================
+
+Day 6: Spring Security
+APIs for Authentication and Authorization
+
+Filter's are like Servlets but not used for application logic but for Interceptor logic
+Examples of Filters like logfilter, encoding, encrypt, security --> not a part of main logic, but can be used for main logic
+
+UsernamePasswordAuthenticationFilter
+
+attemptAuthenctication(autherntication:Authentication)
+
+Authentication:
+username/principle
+credentials/password
+isAuthenticated
+..
+
+```
+<dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+</dependency>
+
+```
+
+1) Adding this makes all the resources as protected.
+2) Creates a username with "user" and password is generated
+Using generated security password: cdafa760-835a-48e4-a8f4-b006e22d6013
+3) creates a login and logout pages
+http://localhost:8080/logout
+
+
+
+
+
+
