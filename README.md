@@ -2136,3 +2136,50 @@ schema.sql ===> DDL
 data.sql ==> DML
 
 https://bcrypt-generator.com/
+
+=========================================
+
+Issues with Stateful SecurityContext with JESSIONID
+1) Not all clients understands cookies / JESSIONID --> Can't have heterogenous applications like Tv / Mobile / Desktop
+2) cookies are best handled only by browsers
+3) Scallabity is an issue --> Need to implement Session Stickiness
+
+Solution: using Tokens
+https://jwt.io/
+JWT: JSON Web Token is used for Authorization in a Stateless implementation of RESTful / GraphQL WS
+
+```
+<<eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.
+eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.
+SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c>>
+
+PART 1:
+HEADER:ALGORITHM & TOKEN TYPE eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+{
+  "alg": "HS256",
+  "typ": "JWT"
+}
+PART 2: PAYLOAD:DATA eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ
+contains claims
+
+{
+  "sub": "banu@gmail.com",
+  "iat": 1516239022,
+  "exp": 2314223445,
+  "iss": "https://secure.adobe.com",
+  "authorites": "ADMIN, USER",
+  "roles": "READ, WRITE, MODIFY"
+}
+
+PART 3: VERIFY SIGNATURE
+HMACSHA256(
+  base64UrlEncode(header) + "." +
+  base64UrlEncode(payload),
+  mySecretSaltValueToGenerateToken
+) 
+
+ mySecretSaltValueToGenerateToken --> some salt value should be stored safely, which is used to generate a token and validate it.
+
+ More Secure applications will use "private salt / key" to generate and "public key" to validate
+```
+
